@@ -1,0 +1,86 @@
+{
+	"login": {
+		"title": "Synnex",
+		"directive": "Please enter your account and password",
+		"account": "Account",
+		"password": "Password",
+		"submit": "Submit",
+		"domain": "Domain",
+		"language":"Language",
+		"input": {
+			"account": {
+				"directive": "Please enter your account."
+			},
+			"password": {
+				"directive": "Please enter your password."
+			}
+		}
+	},
+	"common": {
+		"logout": "Sign out"
+	},
+	"mainMenu": {
+		"title": "App menu",
+		"button": {
+			"delivery": "Delivery",
+			"esign": "e-signing"
+		}
+	},
+	"delivery": {
+		"carInfo":{
+			"title":"Car number and date",
+			"deliverySite":"Delivery site",
+			"carNumber":{
+				"label":"Car number",
+				"directive":"Please enter your car number."
+			},
+			"submit":"Submit",
+			"quit":"Quit"
+		},
+		"departure":{
+			"title":"Departure",
+			"carNumber":"Car Number: ",
+			"assignmentCount":"Assignment count: ",
+			"hints":"Do you want to start your progress?",
+			"confirm":"Yes",
+			"signInOnly":"No, just sign me in"
+		},
+		"menu":{
+			"open":"Features",
+			"quit":"Quit",
+			"ordinaryDelivery":"Ordinary delivery",
+			"productInstallation":"Product Installation",
+			"deliveryFailure":"Delivery failure",
+			"deliveryLog":"Delivery log",
+			"searchAndInquiry":"Search And Inquiry"
+		},
+		"panel": {
+			"title": "Settings",
+			"settings": "System settings",
+			"about": "about",
+			"logout": "logout",
+			"open":"Settings",
+			"close": "close panel"
+		},
+		"ordinaryDelivery":"Ordinary Delivery",
+		"productInstallation":"Product installation",
+		"deliveryFailure":"Delivery failure",
+		"assignment": {
+			"slipNo":{
+				"label":"slip number",
+				"directive":"Please enter slip number."
+			},
+			"pendingList":"Pending to be submit",
+			"submit":"submit",
+			"logging":"logging"
+		},
+		"failure":{
+			"errorHandling":"Error handling",
+			"rearrange":"Rearrange",
+			"notIdentified":"Not identified",
+			"errorType":{
+				"label":"Mark as error case"
+			}
+		}	
+	}
+}

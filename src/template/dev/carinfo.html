@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>carinfo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<div data-role="page" data-dialog="true" id="carinfo" data-theme="a" data-close-btn="none">
+		<div data-role="header" data-position="fixed">
+			<h1 data-i18n="delivery.carInfo.title">車次與日期</h1>
+		</div>
+		<div data-role="main" class="ui-content">
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<label for="areacode_list" data-i18n="delivery.carInfo.deliverySite">物流地點</label><!--  class="ui-hidden-accessible" -->
+					<!-- select 若加上 data-native-menu="false" 屬性在 chrome 上面會無法正常顯示 -->
+					<select id="areacode_list" data-overlay-theme="a" required>
+						<option value="LKA">林口</option>
+						<option value="TC">台中</option>
+					</select>
+				</div>
+				<div class="ui-block-a">
+					<label for="carNum" data-i18n="delivery.carInfo.carNumber.label">車次代碼</label>
+					<input type="text" id="carNum" value="" required data-clean-btn="true"
+						data-i18n="[placeholder]delivery.carInfo.carNumber.directive"/>
+				</div>
+				<!-- <div class="ui-field-contain" id="curDate" style="color:#F00"></div> -->
+			</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<button id="carinfo_btn_confirm" type="button" data-icon="check"
+						data-i18n="delivery.carInfo.submit">送出</button>
+				</div>
+				<div class="ui-block-b">
+					<button id="carinfo_btn_exit" type="button" data-icon="check"
+						data-i18n="delivery.carInfo.quit">離開</button>
+				</div>
+			</div>
+		</div>
+	</div><!-- 車次輸入頁面束 -->
+</body>
+</html>

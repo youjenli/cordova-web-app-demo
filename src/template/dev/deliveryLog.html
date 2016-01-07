@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>deliveryLog</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<div data-role="page" id="deliveryLog" data-theme="a">
+		<div data-role="header" data-position="fixed"><!--  class="composite-page-header" -->
+			<a href="#view/dev/deliveryMenu" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left 
+				ui-shadow ui-corner-all">功能選單</a>
+			<h1>處理紀錄</h1>
+			<button class="openDeliveryPanel ui-btn ui-btn-right ui-icon-bars ui-btn-icon-left 
+				ui-shadow ui-corner-all">設定</button>
+		</div>
+		<div data-role="main" class="ui-content">
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<label for="" class="ui-hidden-accessible">單號</label>
+					<input type="text" class="deliveryAssignmentNo" value="" 
+						placeholder="請輸入單號" required data-clear-btn="true"/>
+					<!-- 
+					<button class="ui-btn ui-icon-camera ui-corner-all ui-shadow ui-btn-icon-notext">
+						掃描</button>
+					 -->
+				</div>
+				<div class="ui-block-a">
+					<ol data-role="listview" data-inset="true" class="deliveryAssignmentReportList">
+						<li data-role="list-divider">待傳輸資料</li>
+					</ol>
+				</div>
+				<div class="ui-block-a">
+					<div class="ui-field-contain">
+						<label for="dev_processLog_code">請選擇處理代碼</label><!-- class="ui-hidden-accessible" -->
+						<select id="dev_processLog_code" data-overlay-theme="a"><!-- data-native-menu="false" -->
+							<option value="ordinaryDelivery">一般安裝完成</option>
+							<option value="notInstall">未安裝</option>
+							<option value="installComplete">工程安裝完成</option>
+							<option value="others">其他</option>
+						</select>
+					</div>
+				</div>
+				<div class="ui-block-a">
+					<div class="ui-field-contain">
+						<textarea id="dev_processLog_remark" cols="10" rows="8" required data-clear-btn="true"></textarea>
+					</div>
+				</div>
+			</div>
+		</div><!-- end main -->
+		<div data-role="footer" data-position="fixed">
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<button id="dev_processLog_btn_confirm" type="button" data-icon="check">
+						確認</button>
+				</div>
+				<div class="ui-block-b">
+					<button id="dev_processLog_arrive_btn_confirm" type="button" data-icon="check">
+						確認且配達</button>
+				</div>
+			</div>
+		<!-- 
+		<div class="ui-grid-b">
+			<div class="ui-block-a" style="width: 38%;">
+				<div class="ui-bar ui-bar-a ui-footer-syn-block-01"><div name="footer_area">LKO</div><div name="footer_name">陳韋廷</div></div>
+			</div>
+			<div class="ui-block-b" style="width: 47%;">
+				<div name="footer_time" class="ui-footer-syn-block-02">2013/07/15 15:52</div>
+			</div>
+			<div class="ui-block-c" style="width: 15%;">
+				<div >
+					<a href="#tools_processLog" data-theme="e" data-rel="popup">
+					<img src="css/images/tools.png" class="ui-img-syn-menu-style" align="right"></a>
+				</div>	
+				<div  data-role="popup" id="tools_processLog">
+					<ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+						<li id="footer_p2_001" data-role="divider" data-theme="e">設定</li>
+						<li><a id="footer_p2_003" href="#client_set">系統參數</a></li>
+						<li><a id="footer_p2_009" href="#language">語系</a></li>
+						<li id="footer_p2_004" data-role="divider" data-theme="e">其他</li>
+						<li><a id="footer_p2_006" href="#about">關於</a></li>
+						<li><a id="footer_p2_007" href="#logout">登出</a></li>
+					</ul>					
+				</div>
+			</div>
+			 -->
+		</div><!-- end footer -->
+	</div>
+</body>
+</html>

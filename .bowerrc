@@ -1,0 +1,4 @@
+{
+	"http_proxy": "http://twpy.synnex-grp.com:8080",
+	"https_proxy": "http://twpy.synnex-grp.com:8080"
+}

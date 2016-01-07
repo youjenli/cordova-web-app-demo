@@ -1,0 +1,64 @@
+{
+	"login": {
+		"title": "联强国际",
+		"directive": "请输入账号与密码",
+		"account": "账号",
+		"password": "密码",
+		"confirm": "登入",
+		"domain": "网域",
+		"input": {
+			"account": {
+				"directive": "请输入账号"
+			},
+			"password": {
+				"directive": "请输入密码"
+			}
+		}
+	},
+	"common": {
+		"logout": "注销"
+	},
+	"mainMenu": {
+		"title": "应用程序选单",
+		"button": {
+			"delivery": "物流配送",
+			"esign": "电子签核"
+		}
+	},
+	"delivery": {
+		"carInfo":{
+			"title":"车次与日期",
+			"deliverySite":"物流地点",
+			"carNumber":{
+				"directive":"请输入车次代码"
+			},
+			"confirm":"确认",
+			"quit":"离开"
+		},
+		"departure":{
+			"title":"出车确认",
+			"carNumber":"车次：",
+			"assignmentCount":"取送单数：",
+			"hints":"是否出车确认？",
+			"confirm":"出车确认",
+			"signInOnly":"仅登入"
+		},
+		"menu":{
+			"quit":"离开",
+			"ordinaryDelivery":"正常配达",
+			"productInstallation":"安装到达",
+			"deliveryFailure":"配送异常",
+			"deliveryLog":"处理纪录",
+			"searchAndInquiry":"查询功能"
+		},
+		"panel": {
+			"title": "设定",
+			"settings": "系统参数",
+			"language": "语系",
+			"about": "关于系统",
+			"logout": "注销",
+			"open":"设定",
+			"close": "关闭此选单"
+		}
+	}
+}

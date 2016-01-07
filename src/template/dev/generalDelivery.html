@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>generalDelivery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<div data-role="page" id="generalDelivery" data-theme="a">
+		<div data-role="header" data-position="fixed"><!-- class="composite-page-header" -->
+			<a href="#view/dev/deliveryMenu" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left 
+				ui-shadow ui-corner-all">功能選單</a>
+			<h1 class="pageTitle"></h1>
+			<button class="ui-btn ui-btn-right ui-icon-bars ui-btn-icon-left 
+				ui-shadow ui-corner-all">設定</button>
+		</div>
+		<div data-role="main" class="ui-content">
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<label for="" class="ui-hidden-accessible">單號</label>
+					<input type="text" class="deliveryAssignmentNo" value="" 
+						placeholder="請輸入單號" required data-clear-btn="true"/>
+					<!-- 
+					<button class="ui-btn ui-icon-camera ui-corner-all ui-shadow ui-btn-icon-notext">
+						掃描</button>
+					 -->
+				</div>
+			</div>
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<ol data-role="listview" data-inset="true" class="deliveryAssignmentReportList">
+						<li data-role="list-divider">待傳輸資料</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<input id="confirm" type="button" data-icon="check" value="新增" />
+				</div>
+				<div class="ui-block-b">
+					<input id="oss_dev_return_btn_record" type="button" data-icon="check" value="處理記錄"/>
+				</div>
+			</div>
+		</div><!-- footer 結束 -->
+	</div>
+</body>
+</html>

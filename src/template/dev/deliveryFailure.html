@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>deliveryFailure</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<div data-role="page" id="deliveryFailure" data-theme="a">
+		<div data-role="header" data-theme="b" data-position="fixed"><!-- class="composite-page-header" -->
+			<a href="#view/dev/deliveryMenu" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left 
+				ui-shadow ui-corner-all" data-i18n="delivery.menu.open">功能選單</a>
+			<h1 data-i18n="delivery.deliveryFailure">配送異常</h1>
+			<button class="openDeliveryPanel ui-btn ui-btn-right ui-icon-bars ui-btn-icon-left 
+				ui-shadow ui-corner-all" data-i18n="delivery.panel.open">設定</button>
+		</div>
+		<div data-role="main" class="ui-content">
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					<label for="" class="ui-hidden-accessible" data-i18n="delivery.assignment.slipNo.label">單號</label>
+					<input type="text" class="deliveryAssignmentNo" value="" required data-clear-btn="true"
+						data-i18n="[placeholder]delivery.assignment.slipNo.directive"/>
+					<!-- 
+					<button class="ui-btn ui-icon-camera ui-corner-all ui-shadow ui-btn-icon-notext">
+						掃描</button>
+					 -->
+				</div>
+				<div class="ui-block-a">
+					<ol data-role="listview" data-inset="true" class="deliveryAssignmentReportList">
+						<li data-role="list-divider" data-i18n="delivery.assignment.pendingList">待傳輸資料</li>
+					</ol>
+				</div>
+				<div class="ui-block-a">
+					<div class="ui-field-contain">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+							<legend data-i18n="delivery.failure.errorHandling">異常處理</legend>
+							<input type="radio" id="dev_return_resend_car" name="dev_return_status_code" value="N" />
+							<label for="dev_return_resend_car" data-i18n="delivery.failure.rearrange">重新派車</label>
+							<input type="radio" id="dev_return_error_check" name="dev_return_status_code" value="P" />
+							<label for="dev_return_error_check" data-i18n="delivery.failure.notIdentified">異常待查</label>
+						</fieldset>
+					</div>
+				</div>
+				<div class="ui-block-a">
+					<div class="ui-field-contain">
+						<label for="dev_return_process_code" data-i18n="delivery.failure.errorType.label">請選擇異常代碼</label>
+						<select name="process_code" id="dev_return_process_code" data-overlay-theme="a"><!-- data-native-menu="false" -->
+							<option value="a">來不及送</option>
+							<option value="b">客戶不在</option>
+							<option value="c">客戶拒收</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<input id="dev_return_btn_confirm" type="button" data-icon="check" 
+						data-i18n="[value]delivery.assignment.submit" value="新增" />
+				</div>
+				<div class="ui-block-b">
+					<input id="oss_dev_return_btn_record" type="button" data-icon="check" 
+						data-i18n="[value]delivery.assignment.logging" value="處理記錄"/>
+				</div>
+			</div>
+		</div><!-- footer 結束 -->
+	</div>
+</body>
+</html>

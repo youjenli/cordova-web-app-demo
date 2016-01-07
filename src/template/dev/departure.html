@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>departure</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<div data-role="page" data-dialog="true" id="departure" data-theme="a" data-close-btn="none">
+		<div data-role="header" data-position="fixed">
+			<h1 data-i18n="delivery.departure.title">出車確認</h1>
+		</div>
+		<div data-role="main" class="ui-content">
+			<div>
+				<span data-i18n="delivery.departure.carNumber">車次：</span><span class="carNum"></span>&nbsp;
+				<span data-i18n="delivery.departure.assignmentCount">取送單數：</span><span class="deliveryAssignment"></span>
+			</div>
+			<div data-i18n="delivery.departure.hints">是否出車確認？</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<button id="departure_btn_confirm" type="button" data-theme="d"
+						data-i18n="delivery.departure.confirm">出車確認</button>
+				</div>
+				<div class="ui-block-b">
+					<button id="login_only" type="button" data-theme="f"
+						data-i18n="delivery.departure.signInOnly">僅登入</button>
+				</div>
+			</div>
+	</div>
+</div>
+</body>
+</html>

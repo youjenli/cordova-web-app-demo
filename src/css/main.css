@@ -1,0 +1,172 @@
+@CHARSET "UTF-8";
+
+/** background images */
+.ui-img-syn-menu-style{
+	max-width:50px;
+	width:50px;
+	max-height:50px;
+	height:50px;
+}
+.ui-img-syn-menu-block{
+	display:block;
+	font-size:18pt;
+}
+.ui-img-syn-menu-middle{
+	font-size:18pt;
+}
+.ui-img-syn-menu-ok {
+	background-image: url("images/ok.png");		
+	background-size: 60px 60px;
+	/*min-height:130px;
+	min-width:130px;*/
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.ui-img-syn-online {
+	background-image: url("images/online.png");		
+	background-size: 37px 48px;
+	min-height:48px;
+	min-width:48px;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.ui-img-syn-tools {
+	background-image: url("images/tools.png");		
+	background-size: 40px 40px;	
+	min-height:50px;
+	min-width:50px;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.ui-img-syn-camera {
+	background-image: url("images/syn_08.png");		
+	background-size: 60px 60px;	
+	min-height:60px;
+	min-width:60px;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.ui-img-syn-home {
+	background-image: url("images/home.png");		
+	background-size: 60px 60px;	
+	min-height:60px;
+	min-width:60px;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.ui-img-syn-offline {
+	background-image: url("images/offline.png");		
+	background-size: 37px 48px;
+	min-height:48px;
+	min-width:48px;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.ui-img-syn-logo {
+	background-image: url("images/logo.png");
+	/*min-height:50px;
+	min-width:255px;*/
+	background-size: 321px 35px;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+/** widget */
+.ui-header-syn-01 {
+	/*min-height:60px;*/
+	/*min-width:255px;*/
+	min-height:90%;
+	font-size:35pt;
+	text-align:center;
+}
+.ui-footer-syn-01 {
+	min-height:50px;	
+}
+.ui-footer-syn-block-01 {
+	text-align:left;
+	max-height:30px;
+}
+.ui-footer-syn-block-02 {
+	text-align:left;
+	font-size:15pt;
+}
+
+.page-header, .composite-page-header{
+	height:10%;
+	/*set min-height to prevent button icon overlap header while mobile phone in landscape view*/
+	min-height:53px;
+}
+
+.page-header {
+	text-align:center;
+}
+
+.composite-page-header > div,
+.composite-page-header > img {
+	display:inline-block;
+	vertical-align:middle;
+	border:0;
+}
+
+.page-title{
+	width:100%;
+	height:50px;
+}
+
+.header-btn-block{
+	width:19%;
+}
+
+.header-btn-block > a {
+	margin:auto;
+}
+
+.header-img-btn{
+	display:block;
+    /*background size determine the button icon size*/
+    background-size:50px 50px;
+    /*
+    background-size:100%;
+    width:48px;
+    height:48px;
+    */
+    /*(min)width(height) determine the button size
+       min-width , min-height + background-image-size in px
+       width, height + background-image-size in % 
+       two way to control button and button image size.
+    */
+    min-width:50px;
+    min-height:50px;
+    /*Disable default behavior of bg image repeating and center bg image*/
+    background-repeat:no-repeat;
+	background-position:center;
+	/*remove underline of anchor element*/
+	text-decoration:none;
+}
+
+.header-icon-btn{
+	display:block;
+	background-size:65%;
+	width:45px;
+	heigth:45px;
+	min-width:45px;
+	min-height:45px;
+	background-repeat:no-repeat;
+	background-position:center;
+	text-decoration:none;
+}
+
+.header-back-to-main-menu-btn-icon{
+	background-image: url("images/white_list-48x48.png");
+}
+
+.header-home-btn-icon {
+	background-image: url("images/home.png");
+}
+
+.header-camera-btn-icon {
+	background-image: url("images/syn_08.png");
+}
+
+#loginMessage {
+	text-align:center;
+}

@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+requirejs.config({
+	baseUrl:'js',
+	paths:{
+		'jquery':'lib/jquery-1.9.1',
+		'jquery.mobile':'lib/jquery.mobile-1.4.5',
+		'jquery.i18next':'lib/i18next.amd.withJQuery-1.8.0',
+		'underscore':'lib/underscore-1.7.0',
+		'backbone':'lib/backbone-1.1.2'
+            }
+});

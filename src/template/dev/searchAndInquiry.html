@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>searchAndQuery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<div data-role="page" id="searchAndQuery" data-theme="a">
+		<div data-role="header" data-position="fixed"><!-- class="composite-page-header" -->
+			<a href="#view/dev/deliveryMenu" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left 
+				ui-shadow ui-corner-all">功能選單</a>
+			<h1>查詢功能</h1>
+			<button class="openDeliveryPanel ui-btn ui-btn-right ui-icon-bars ui-btn-icon-left 
+				ui-shadow ui-corner-all">設定</button>
+		</div>
+		<!-- <div data-role="main" class="ui-content"> -->
+			<div id="searchAndQueryTabs"><!--  data-role="tabs" -->
+				<div id="queryDeliveryAssignmentTab" data-role="tab" class="ui-content" style="display:none">
+					<div class="ui-grid-solo">
+						<div class="ui-block-a">
+							<input type="search" data-inline="true" placeholder="請輸入搜尋單號" required data-clear-btn="true"/>
+						</div>
+						<div class="ui-block-a">
+							<div class="ui-field-contain">
+								<fieldset data-role="controlgroup" data-type="horizontal">
+								<legend>查詢條件</legend>
+									<label for="query_trans_type_select">作業類型</label>
+									<select id="query_trans_type_select"><!-- data-native-menu="false" -->
+	        							<option value="">作業類型</option>
+	        							<option value="-1">ALL</option>
+	        							<option value="5">配達+異常</option>
+	        							<option value="1">正常配達</option>
+	        							<option value="3">配送異常</option>
+	        							<option value="6">單據新增</option>
+	        							<option value="2">安裝到達</option>
+	        							<option value="4">處理記錄</option>
+	        							<option value="7">未完成</option>
+	    							</select>
+	    							<label for="query_trans_flag_select">傳輸狀態</label>
+									<select id="query_trans_flag_select"><!-- data-native-menu="false" -->
+	        							<option value="" >傳輸狀態</option>
+	        							<option value="CT">當天已傳</option>
+										<option value="O">未傳送</option>
+	        							<option value="CY">昨日已傳</option>
+	    							</select>
+	    							<label for="carcode_select">車次代碼</label>
+	    							<select id="carcode_select"><!-- data-native-menu="false" -->
+	    								<option value="" >車次代碼</option>
+									</select>
+								</fieldset>
+							</div>
+						</div>
+						<div class="ui-block-a">
+							<button class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow ui-corner-all">
+								開始查詢</button>
+						</div>
+					</div>
+				</div><!-- end tab1 -->
+				<div id="searchDeliveryAssignmentTab" data-role="tab" class="ui-content" style="display:none">
+					<div class="ui-grid-solo">
+						<div class="ui-block-a">
+							<input type="search" id="query_lan_020" data-inline="true" placeholder="請輸入搜尋單號" required data-clear-btn="true"/>
+						</div>
+						<div class="ui-block-a">
+							<button  class="ui-btn ui-icon-check ui-btn-icon-left ui-shadow ui-corner-all">
+								即時查詢</button>
+						</div>
+					</div>
+				</div>
+			</div><!-- end tabs -->
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#queryDeliveryAssignmentTab" data-rel="tab">傳送作業</a></li>
+						<li><a href="#searchDeliveryAssignmentTab" data-rel="tab">單據狀態</a></li>
+					</ul>
+				</div><!-- end navbars -->
+			</div>
+		<!--</div> end page content -->
+	</div>
+</body>
+</html>

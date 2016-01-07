@@ -1,0 +1,15 @@
+<!-- 
+	martinli@ Y140327
+	這個樣板的結構與其他 jqm 的樣板不同, 它沒有包在網頁的 html body 裡,
+	原因是我一直無法在樣板載入後順利解析這個頁面並塞入原本的網頁結構中,
+	最後使用這個單純只有文件結構的做法來克服這個問題
+ -->
+<div id="deliveryPanel" data-role="panel" data-display="overlay" data-theme="a">
+	<h3 data-i18n="delivery.panel.title">設定</h3>
+	<ul data-role="listview" style="min-width:210px;"><!-- data-inset="true" -->
+		<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-gear" data-i18n="delivery.panel.settings">系統參數</a></li>
+		<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info" data-i18n="delivery.panel.about">關於系統</a></li>
+		<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-power" data-i18n="delivery.panel.logout">登出</a></li>
+		<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-delete" data-rel="close" data-i18n="delivery.panel.close">關閉此選單</a></li>
+	</ul>
+</div>
