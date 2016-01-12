@@ -14,10 +14,6 @@ define(['jquery', 'jquery.mobile', 'backbone', 'utility/globalRouter'], function
 			globalRouter.navigate("view/mainMenu", {trigger:false});
 		}
 	});
-//	var view = new MainMenu();
-	
-	var deferred = $.Deferred();
-	deferred.resolveWith(MainMenu, [MainMenu]);
-	
-	return deferred.promise();
+		
+	return new MainMenu();
 });

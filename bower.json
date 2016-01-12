@@ -1,24 +1,55 @@
 {
   "name": "Html5Application",
+  "description": "cordova crosswalk application demo",
   "version": "1.0.0",
-  "main": "path/to/main.css",
+  "main": "src/index.html",
   "ignore": [
     ".jshintrc",
-    "**/*.txt"
+    "**/*.txt",
+	"**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
   ],
-  "dependencies": {
+  "keywords": [
+    "cordova",
+    "crosswalk"
+  ],
+   "dependencies": {
     "jquery": "1.9.1",
-    "jquery-mobile": "1.4.5",
     "backbone": "1.1.2",
     "requirejs": "2.1.15",
-	"cordova-promise-fs": "~0.13.0"
+    "cordova-promise-fs": "~0.13.0",
+    "jquery-mobile-for-synnex": "https://github.com/youjenli/jquery-mobile-for-synnex.git#1.0.1",
+    "jquery-i18next-plugin-for-synnex": "https://github.com/youjenli/jquery-i18next-plugin-for-synnex.git#1.0.3"
   },
   "overrides": {
-	"jquery": {
-		"main": {
-			"development":"jquery.js",
-			"production":["jquery.min.js", "jquery.min.map"]
-		}
-	}
+    "jquery": {
+      "main": {
+        "development": "./jquery.js",
+        "production": "./jquery.min.js"
+      }
+    },
+    "jquery-mobile-for-synnex": {
+      "main": {
+        "development": [
+          "./images/icons-png/*",
+          "./images/ajax-loader.gif",
+          "./jquery-mobile-theme-for-synnex.css",
+          "./jquery.mobile.icons.css",
+          "./jquery.mobile.structure.css",
+          "./jquery.mobile.js"
+        ],
+        "production": [
+          "./images/icons-png/*",
+          "./images/ajax-loader.gif",
+          "./jquery-mobile-theme-for-synnex.min.css",
+          "./jquery.mobile.icons.min.css",
+          "./jquery.mobile.structure.min.css",
+          "./jquery.mobile.min.js"
+        ]
+      }
+    }
   }
 }

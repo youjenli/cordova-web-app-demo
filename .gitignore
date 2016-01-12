@@ -17,11 +17,38 @@ bin
 ehthumbs.db
 Thumbs.db
 
-# netbeans gradle settings 
+# netbeans settings 
 /platforms/android/.nb-gradle/
+/nbproject/private/
 
 # bower local packages
 bower_components
 
 # npm local packages and programs
 node_modules
+
+# Prevent any commitment at www folder
+/www
+
+# cli hooks
+/.cordova
+
+# Do not commit any dependencies of this project to git
+/src/js/libs
+/src/js/lib
+/src/lib
+/src/libs
+
+# Android source project ignore list
+platforms/android/assets/www
+platforms/android/gen/
+platforms/android/res/xml/config.xml
+
+# iOS source project ignore list
+platforms/ios/CordovaLib
+platforms/ios/www
+platforms/ios/**/config.xml
+platforms/ios/.staging
+
+# Emulator logs
+platforms/ios/cordova/console.log

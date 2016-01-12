@@ -1,10 +1,13 @@
 <!-- 
-	martinli@ Y140327
-	這個樣板的結構與其他 jqm 的樣板不同, 它沒有包在網頁的 html body 裡,
-	原因是我一直無法在樣板載入後順利解析這個頁面並塞入原本的網頁結構中,
-	最後使用這個單純只有文件結構的做法來克服這個問題
+	martinli@ Y150112
+	"跨頁的"側邊面板要手動初始化, 詳細做法請參考
+	http://demos.jquerymobile.com/1.4.5/panel-external/
+	
+	要注意的是未初始化的"跨頁"側邊面板會在畫面上留下痕跡, 
+	因此要是應用程式有跨頁的側邊面板不在應用程式開啟時就初始化, 那就要在側邊面板加上樣式 display:none,
+	然後在初始化跨頁側邊面板的程式碼中移除 display:none 樣式, 以下物流配送的跨頁側邊面板就是很好的例子	
  -->
-<div id="deliveryPanel" data-role="panel" data-display="overlay" data-theme="a">
+<div id="deliveryPanel" data-role="panel" data-display="overlay" data-theme="a" style="display:none">
 	<h3 data-i18n="delivery.panel.title">設定</h3>
 	<ul data-role="listview" style="min-width:210px;"><!-- data-inset="true" -->
 		<li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-gear" data-i18n="delivery.panel.settings">系統參數</a></li>

@@ -8,49 +8,36 @@
  */
 define(['jquery', 'jquery.mobile', 'backbone'], 
 		function($, $mobile, Backbone){
-	
-	var deferred = $.Deferred();
-	$(":mobile-pagecontainer").pagecontainer("load", "template/dev/searchAndInquiry.html", {role:"page"})
-		.done(function(){
-			
-			var SearchAndQueryView = Backbone.View.extend({
-				el:"#searchAndQuery",
-				events:{
-					"click a:jqmData(rel='tab')":"_switchTab",
-				},
-				activeTab:undefined,
-				initialize:function(){
-					var self = this;
-					this.$el.on("pagebeforeshow", function(){
-						self.activeTab = self.$el.find(":jqmData(role='tab'):eq(0)").toggle(true);
-						self.$el.find(":jqmData(role='tab'):gt(0)").toggle(false);
-						self.$el.find(":jqmData(role='navbar') :jqmData(rel='tab') :eq(0)").addClass("ui-btn-active");
-					});
-				},
-				_switchTab:function(evt){
-					var target = evt.target;
-					var href = $(target).attr("href");
-					if( this.activeTab.is(target) == false ){
-						this.activeTab.hide();
-						this.activeTab = this.$el.find(href).show();
-					}
-				},
-				render:function(){
-					var id = "#" + this.$el.attr("id");
-					$(":mobile-pagecontainer").pagecontainer("change", id, {role:"page"});
-				}
+		
+	var SearchAndQueryView = Backbone.View.extend({
+		el:"#searchAndQuery",
+		events:{
+			"click a:jqmData(rel='tab')":"_switchTab",
+		},
+		activeTab:undefined,
+		initialize:function(){
+			var self = this;
+			this.$el.on("pagebeforeshow", function(){
+				self.activeTab = self.$el.find(":jqmData(role='tab'):eq(0)").toggle(true);
+				self.$el.find(":jqmData(role='tab'):gt(0)").toggle(false);
+				self.$el.find(":jqmData(role='navbar') :jqmData(rel='tab') :eq(0)").addClass("ui-btn-active");
 			});
-			
-			var view = new SearchAndQueryView({
-//				model:ordinaryDeliveryProcedure
-			});
-			
-			deferred.resolveWith(view, [view]);
-		})
-		.fail(function(){
-			//TODO exception handling
-			deferred.reject();
-		});
+		},
+		_switchTab:function(evt){
+			var target = evt.target;
+			var href = $(target).attr("href");
+			if( this.activeTab.is(target) == false ){
+				this.activeTab.hide();
+				this.activeTab = this.$el.find(href).show();
+			}
+		},
+		render:function(){
+			var id = "#" + this.$el.attr("id");
+			$(":mobile-pagecontainer").pagecontainer("change", id, {role:"page"});
+		}
+	});
 	
-	return deferred.promise();
+	return new SearchAndQueryView({
+//		model:ordinaryDeliveryProcedure
+	});
 });

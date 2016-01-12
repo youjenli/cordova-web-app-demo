@@ -1,58 +1,49 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>deliveryMenu</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-	<div data-role="page" id="deliveryMenu" data-theme="a">
-		<div data-role="header" data-position="fixed"><!-- class="composite-page-header" -->
-			<button class="quit ui-btn ui-btn-left ui-icon-back ui-btn-icon-left ui-shadow ui-corner-all"
-				data-i18n="delivery.menu.quit">離開</button>
-			<h1>
-				<img class="page-title" src="../../images/logo.png" alt="SYN Logistics" />
-			</h1>
-			<button class="openDeliveryPanel ui-btn ui-btn-right ui-icon-bars ui-btn-icon-left 
-				ui-shadow ui-corner-all" data-i18n="delivery.panel.open">設定</button>
+<div data-role="page" id="deliveryMenu" data-theme="a">
+	<div data-role="header" data-position="fixed"><!-- class="composite-page-header" -->
+		<button class="quit ui-btn ui-btn-left ui-icon-back ui-btn-icon-left ui-shadow ui-corner-all"
+			data-i18n="delivery.menu.quit">離開</button>
+		<h1>
+			<img class="page-title" src="images/logo.png" alt="SYN Logistics" />
+		</h1>
+		<button class="openDeliveryPanel ui-btn ui-btn-right ui-icon-bars ui-btn-icon-left 
+			ui-shadow ui-corner-all" data-i18n="delivery.panel.open">設定</button>
+	</div>
+	<div data-role="main" class="ui-content">
+		<div class="ui-grid-solo">
+			<div class="ui-block-a" >
+				<a href="#view/dev/features/ordinaryDelivery" data-role="button">
+					<img src="images/ok.png" class="ui-img-syn-menu-style" align="middle">
+					<div class="ui-img-syn-menu-middle" data-i18n="delivery.menu.ordinaryDelivery">正常配達</div>
+				</a>
+			</div>
 		</div>
-		<div data-role="main" class="ui-content">
-			<div class="ui-grid-solo">
-				<div class="ui-block-a" >
-					<a href="#view/dev/features/ordinaryDelivery" data-role="button">
-						<img src="../../images/ok.png" class="ui-img-syn-menu-style" align="middle">
-						<div class="ui-img-syn-menu-middle" data-i18n="delivery.menu.ordinaryDelivery">正常配達</div>
-					</a>
-				</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<a href="#view/dev/features/productInstallation" data-role="button">
+					<img src="images/syn_02.png" class="ui-img-syn-menu-style" align="middle">
+					<div class="ui-img-syn-menu-block" data-i18n="delivery.menu.productInstallation">安裝到達</div>
+				</a>
 			</div>
-			<div class="ui-grid-a">
-				<div class="ui-block-a">
-					<a href="#view/dev/features/productInstallation" data-role="button">
-						<img src="../../images/syn_02.png" class="ui-img-syn-menu-style" align="middle">
-						<div class="ui-img-syn-menu-block" data-i18n="delivery.menu.productInstallation">安裝到達</div>
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#view/dev/features/deliveryFailure" data-role="button">
-						<img src="../../images/fail.png" class="ui-img-syn-menu-style" align="middle">
-						<div class="ui-img-syn-menu-block" data-i18n="delivery.menu.deliveryFailure">配送異常</div>
-					</a>
-				</div>
+			<div class="ui-block-b">
+				<a href="#view/dev/features/deliveryFailure" data-role="button">
+					<img src="images/fail.png" class="ui-img-syn-menu-style" align="middle">
+					<div class="ui-img-syn-menu-block" data-i18n="delivery.menu.deliveryFailure">配送異常</div>
+				</a>
 			</div>
-			<div class="ui-grid-a">
-				<div class="ui-block-a">
-					<a href="#view/dev/features/deliveryLog" data-role="button">
-						<img src="../../images/syn_04.png" class="ui-img-syn-menu-style" align="middle">
-						<div class="ui-img-syn-menu-block" data-i18n="delivery.menu.deliveryLog">處理記錄</div>
-					</a>
-				</div>
-				<div class="ui-block-b">
-					<a href="#view/dev/features/searchAndInquiry" data-role="button">
-						<img src="../../images/syn_05.png" class="ui-img-syn-menu-style" align="middle">
-						<div class="ui-img-syn-menu-block" data-i18n="delivery.menu.searchAndInquiry">查詢功能</div>
-					</a>
-				</div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<a href="#view/dev/features/deliveryLog" data-role="button">
+					<img src="images/syn_04.png" class="ui-img-syn-menu-style" align="middle">
+					<div class="ui-img-syn-menu-block" data-i18n="delivery.menu.deliveryLog">處理記錄</div>
+				</a>
+			</div>
+			<div class="ui-block-b">
+				<a href="#view/dev/features/searchAndInquiry" data-role="button">
+					<img src="images/syn_05.png" class="ui-img-syn-menu-style" align="middle">
+					<div class="ui-img-syn-menu-block" data-i18n="delivery.menu.searchAndInquiry">查詢功能</div>
+				</a>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+</div>

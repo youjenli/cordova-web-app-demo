@@ -131,6 +131,7 @@ define(['jquery', 'jquery.mobile', 'backbone'], function($, $mobile, Backbone){
 			this._addSlipNoToListView(slipNoList, true);
 
 			var id = "#" + this.$el.attr("id");
+			console.log("render page id : " + id);//TODO
 			$(":mobile-pagecontainer").pagecontainer("change", id, {role:"page"});
 		}
 	});

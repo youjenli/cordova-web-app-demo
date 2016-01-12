@@ -21,24 +21,20 @@ define(['jquery', 'jquery.mobile', 'backbone'],
 		function($, $mobile, Backbone){
 
 	var GlobalWidgets = Backbone.View.extend({
-		el:document,
+		el:"#globalPopup",
 		events:{
 		},
 		initialize:function(){
-			this.$el.find("#globalPopup").popup().enhanceWithin();
+			this.$el.popup().enhanceWithin();
 		},
 		showPopup:function(msg){
-			var id = "#globalPopup";
-			this.$el.find(id + " .popupContent").text(msg);
-			this.$el.find(id).popup('open');
+			this.$el.find(".popupContent").text(msg);
+			this.$el.popup('open');
 		},
 		closePopup:function(){
-			this.$el.find("#globalPopup").popup('close');
+			this.$el.popup('close');
 		}
 	});
 	
-	var deferred = $.Deferred();
-	deferred.resolveWith(GlobalWidgets, [GlobalWidgets]);
-	
-	return deferred.promise();
+	return new GlobalWidgets();
 });

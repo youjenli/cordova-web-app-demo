@@ -1,50 +1,41 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<title>productIntallation</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
-<body>
-	<div data-role="page" id="productInstallation" data-theme="a">
-		<div data-role="header" data-position="fixed"><!-- class="composite-page-header" -->
-			<a href="#view/dev/deliveryMenu" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left 
-				ui-shadow ui-corner-all" data-i18n="delivery.menu.open">功能選單</a>
-			<h1 data-i18n="delivery.productInstallation">安裝到達</h1>
-			<button class="openDeliveryPanel ui-btn ui-btn-right ui-icon-bars ui-btn-icon-left 
-				ui-shadow ui-corner-all" data-i18n="delivery.panel.open">設定</button>
-		</div>
-		<div data-role="main" class="ui-content">
-			<div class="ui-grid-solo">
-				<div class="ui-block-a">
-					<label for="" class="ui-hidden-accessible" data-i18n="delivery.assignment.slipNo.label">單號</label>
-					<input type="text" class="deliveryAssignmentNo" value="" required data-clear-btn="true"
-						data-i18n="[placeholder]delivery.assignment.slipNo.directive"/>
-					<!-- 
-					<button class="ui-btn ui-icon-camera ui-corner-all ui-shadow ui-btn-icon-notext">
-						掃描</button>
-					 -->
-				</div>
-			</div>
-			<div class="ui-grid-solo">
-				<div class="ui-block-a">
-					<ol data-role="listview" data-inset="true" class="deliveryAssignmentReportList">
-						<li data-role="list-divider" data-i18n="delivery.assignment.pendingList">待傳輸資料</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-		<div data-role="footer" data-position="fixed">
-			<div class="ui-grid-a">
-				<div class="ui-block-a">
-					<input id="dev_install_btn_confirm" type="button" data-icon="check" 
-						data-i18n="[value]delivery.assignment.submit" value="新增" />
-				</div>
-				<div class="ui-block-b">
-					<input id="dev_install_btn_record" type="button" data-icon="check" 
-						data-i18n="[value]delivery.assignment.logging" value="處理記錄"/>
-				</div>
-			</div>
-		</div><!-- footer 結束 -->
+<div data-role="page" id="productInstallation" data-theme="a">
+	<div data-role="header" data-position="fixed"><!-- class="composite-page-header" -->
+		<a href="#view/dev/deliveryMenu" class="ui-btn ui-btn-left ui-icon-back ui-btn-icon-left 
+			ui-shadow ui-corner-all" data-i18n="delivery.menu.open">功能選單</a>
+		<h1 data-i18n="delivery.productInstallation">安裝到達</h1>
+		<button class="openDeliveryPanel ui-btn ui-btn-right ui-icon-bars ui-btn-icon-left 
+			ui-shadow ui-corner-all" data-i18n="delivery.panel.open">設定</button>
 	</div>
-</body>
-</html>
+	<div data-role="main" class="ui-content">
+		<div class="ui-grid-solo">
+			<div class="ui-block-a">
+				<label for="" class="ui-hidden-accessible" data-i18n="delivery.assignment.slipNo.label">單號</label>
+				<input type="text" class="deliveryAssignmentNo" value="" required data-clear-btn="true"
+					data-i18n="[placeholder]delivery.assignment.slipNo.directive"/>
+				<!-- 
+				<button class="ui-btn ui-icon-camera ui-corner-all ui-shadow ui-btn-icon-notext">
+					掃描</button>
+				 -->
+			</div>
+		</div>
+		<div class="ui-grid-solo">
+			<div class="ui-block-a">
+				<ol data-role="listview" data-inset="true" class="deliveryAssignmentReportList">
+					<li data-role="list-divider" data-i18n="delivery.assignment.pendingList">待傳輸資料</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<input id="dev_install_btn_confirm" type="button" data-icon="check" 
+					data-i18n="[value]delivery.assignment.submit" value="新增" />
+			</div>
+			<div class="ui-block-b">
+				<input id="dev_install_btn_record" type="button" data-icon="check" 
+					data-i18n="[value]delivery.assignment.logging" value="處理記錄"/>
+			</div>
+		</div>
+	</div><!-- footer 結束 -->
+</div>

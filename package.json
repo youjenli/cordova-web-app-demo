@@ -1,23 +1,31 @@
 {
   "name": "Html5Application",
   "version": "1.0.0",
-  "keywords": [
-    "util",
-    "functional",
-    "server",
-    "client",
-    "browser"
-  ],
   "author": "martinli",
-  "contributors": [],
-  "dependencies": {},
+  "keywords": [
+    "cordova",
+    "crosswalk",
+    "web",
+    "html5"
+  ],
+  "scripts": {
+    "project-init": "npm install && bower install && gulp wireDependencies",
+    "build": "gulp prepare && cordova build",
+    "start": "cordova serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "devDependencies": {
     "bower": "^1.7.2",
     "cordova": "^5.4.1",
-    "gulp": "^3.9.0",
-    "gulp-filter": "^3.0.1",
+     "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-htmlprocessor": "^0.1.1",
+    "gulp-inject": "^3.0.0",
     "gulp-main-bower-files": "^1.3.0",
     "gulp-print": "^2.0.1",
-    "gulp-rename": "^1.2.2"
+    "gulp-rename": "^1.2.2",
+    "gulp-requirejs-optimize": "^0.3.1",
+    "gulp-sourcemaps": "^1.6.0"
   }
 }
