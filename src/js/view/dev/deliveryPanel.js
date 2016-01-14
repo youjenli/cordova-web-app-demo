@@ -36,6 +36,6 @@ define(['jquery', 'jquery.mobile', 'backbone'], function($, $mobile, Backbone){
 		}
 	});
 	
-	return new PanelView();
+	return PanelView;
 	
 });

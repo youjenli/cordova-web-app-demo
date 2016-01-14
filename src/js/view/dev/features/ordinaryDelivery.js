@@ -1,9 +1,8 @@
 /**
  * Ordinary Delivery View
  */
-define(['jquery', 'jquery.mobile', 'backbone', 
-        'view/dev/features/generalDeliveryView', 'module/dev/features/ordinaryDelivery'], 
-		function($, $mobile, Backbone, GeneralDeliveryView, ordinaryDeliveryProcedure){
+define(['jquery', 'jquery.mobile', 'backbone', 'view/dev/features/generalDeliveryView'], 
+		function($, $mobile, Backbone, GeneralDeliveryView){
 	
 	var OrdinaryDeliveryView = GeneralDeliveryView.extend({
 		el:"#ordinaryDelivery",
@@ -15,7 +14,5 @@ define(['jquery', 'jquery.mobile', 'backbone',
 		}
 	});
 	
-	return new OrdinaryDeliveryView({
-		model:ordinaryDeliveryProcedure
-	});
+	return OrdinaryDeliveryView;
 });

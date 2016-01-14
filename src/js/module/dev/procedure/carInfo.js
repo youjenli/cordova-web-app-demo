@@ -19,5 +19,5 @@ define(['jquery', 'jquery.mobile', 'backbone'], function($, $mobile, Backbone){
 		}
 	});
 	
-	return new CarInfoModel();
+	return CarInfoModel;
 });

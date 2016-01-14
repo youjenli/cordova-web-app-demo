@@ -1,7 +1,7 @@
 /**
  * CarInfo View
  */
-define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/procedure/carInfo'], function($, $mobile, Backbone, carInfoProcedure){
+define(['jquery', 'jquery.mobile', 'backbone'], function($, $mobile, Backbone){
 	
 	var CarInfoView = Backbone.View.extend({
 		el:"#carinfo",
@@ -26,7 +26,5 @@ define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/procedure/carInfo'], 
 		}
 	});
 	
-	return new CarInfoView({
-		model:carInfoProcedure
-	});
+	return CarInfoView;
 });

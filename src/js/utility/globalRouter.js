@@ -1,7 +1,7 @@
 /**
  * 
  */
-define(["jquery", "backbone"], function($, Backbone){
+define(["backbone"], function(Backbone){
 	
 	var GlobalRouter = Backbone.Router.extend({
 		

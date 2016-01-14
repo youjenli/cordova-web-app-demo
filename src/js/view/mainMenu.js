@@ -15,5 +15,5 @@ define(['jquery', 'jquery.mobile', 'backbone', 'utility/globalRouter'], function
 		}
 	});
 		
-	return new MainMenu();
+	return MainMenu;
 });

@@ -37,7 +37,5 @@ define(['jquery', 'jquery.mobile', 'backbone'],
 		}
 	});
 	
-	return new SearchAndQueryView({
-//		model:ordinaryDeliveryProcedure
-	});
+	return SearchAndQueryView;
 });

@@ -39,5 +39,5 @@ define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/procedure/carInfo'], 
 		}
 	});
 	
-	return new DepartureProcedure();
+	return DepartureProcedure;
 });

@@ -3,9 +3,8 @@
  * 預先設定並載入 jQuery Mobile, 以避免 worklight 框架過晚初始化 jQuery Mobile,
  * 導致使用者在 dom 結構載入完成至 jqm 呈現第一個分頁之前, 短暫看到一個沒有任何樣式的網頁 
  */
-
-require(['jquery', 'jquery.i18next'], function($, i18next){
-
+define(['jquery', 'jquery.i18next'], function($, i18next){
+	
 	var i18nOpts = {
 		lng:navigator.language,
 		preload:['zh-TW', 'dev', 'en'],
@@ -56,11 +55,6 @@ require(['jquery', 'jquery.i18next'], function($, i18next){
 		$(document).on("pagebeforecreate", ":jqmData(role='page')", function(evt){
 			var page = $(evt.target).i18n();
 			console.log("Translate words in page " + page.attr("id") + " to locale " + i18next.lng());
-		});
-		
-	});
-	
-	require(['jquery.mobile'], function($mobile){
-		console.log("jQuery mobile has been loaded.");
+		});	
 	});
 });

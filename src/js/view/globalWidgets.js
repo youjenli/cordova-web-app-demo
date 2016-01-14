@@ -36,5 +36,5 @@ define(['jquery', 'jquery.mobile', 'backbone'],
 		}
 	});
 	
-	return new GlobalWidgets();
+	return GlobalWidgets;
 });

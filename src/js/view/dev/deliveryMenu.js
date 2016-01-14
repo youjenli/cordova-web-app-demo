@@ -1,8 +1,8 @@
 /**
  * 
  */
-define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/procedure/deliveryMenu'], 
-		function($, $mobile, Backbone, deliveryMenuProcedure){
+define(['jquery', 'jquery.mobile', 'backbone'], 
+		function($, $mobile, Backbone){
 	
 	var DeliveryMenuView = Backbone.View.extend({
 		el:"#deliveryMenu",
@@ -19,9 +19,7 @@ define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/procedure/deliveryMen
 			$(":mobile-pagecontainer").pagecontainer("change", id, {role:"page"});
 		}
 	});
-	
-	return new DeliveryMenuView({
-		model:deliveryMenuProcedure
-	});
+
+	return DeliveryMenuView;
 	
 });

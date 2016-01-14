@@ -1,9 +1,8 @@
 /**
  * 
  */
-define([ 'jquery', 'jquery.mobile', 'jquery.i18next', 'backbone', 
-			'utility/globalRouter', 'module/login'], 
-		function($, $mobile, i18next, Backbone, globalRouter, loginModule){
+define([ 'jquery', 'jquery.mobile', 'jquery.i18next', 'backbone', 'utility/globalRouter'], 
+		function($, $mobile, i18next, Backbone, globalRouter){
 	
 	var LoginView = Backbone.View.extend({
 		el:"#login",
@@ -48,8 +47,6 @@ define([ 'jquery', 'jquery.mobile', 'jquery.i18next', 'backbone',
 		}
 	});
 	
-	return new LoginView({
-		model:loginModule
-	});
+	return LoginView;
 
 });

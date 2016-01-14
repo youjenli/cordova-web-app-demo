@@ -1,7 +1,7 @@
 /**
  * departure view
  */
-define(['jquery', 'jquery.mobile','backbone', 'module/dev/procedure/departure'], function($, $mobile, Backbone, departureProcedure){
+define(['jquery', 'jquery.mobile','backbone'], function($, $mobile, Backbone){
 			
 	var DepartureView = Backbone.View.extend({
 		el:"#departure",
@@ -32,7 +32,6 @@ define(['jquery', 'jquery.mobile','backbone', 'module/dev/procedure/departure'],
 			this.model.loginOnly();
 		}
 	});
-	
-	return new DepartureView({model:departureProcedure});
+	return DepartureView;
 	
 });

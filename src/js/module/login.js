@@ -38,5 +38,5 @@ define(['jquery', 'jquery.mobile', 'backbone', 'utility/globalRouter'],
 		}
 	});
 	
-	return new LoginModule();
+	return LoginModule;
 });
