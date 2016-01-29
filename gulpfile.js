@@ -66,6 +66,8 @@ switch(process.env.NODE_ENV) {
 			srcPath + "css/**/*",
 			srcPath + "images/**/*",
 			srcPath + "locales/**/*",
+			'!' + srcPath  + 'template',
+			'!' + srcPath  + 'index.html'
 		];
 		tasksBeforePrepare = ['mainBowerFiles', 'mainPage', 'optimizejs'];
 		break;

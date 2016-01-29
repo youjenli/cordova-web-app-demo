@@ -5,6 +5,7 @@ requirejs.config({
 		"jquery.mobile":"../lib/jquery-mobile-for-synnex/jquery.mobile",
 		"jquery.i18next":"../lib/jquery-i18next-plugin-for-synnex/i18next.amd.withJQuery-1.8.0",
 		"underscore":"../lib/underscore/underscore",
-		"backbone":"../lib/backbone/backbone"
+		"backbone":"../lib/backbone/backbone",
+		"domReady":"../lib/domReady/domReady"
     }
 });
