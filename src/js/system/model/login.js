@@ -1,8 +1,8 @@
 /**
  * Login Module
  */
-define(['jquery', 'jquery.mobile', 'backbone', 'utility/globalRouter'], 
-		function($, $mobile, Backbone, globalRouter){
+define(['jquery', 'jquery.mobile', 'backbone'], 
+		function($, $mobile, Backbone){
 	
 	var LoginModule = Backbone.Model.extend({
 		attributes:{
@@ -12,9 +12,6 @@ define(['jquery', 'jquery.mobile', 'backbone', 'utility/globalRouter'],
 		initialize:function(){
 			var self = this;
 			$.extend(self, Backbone.Events);
-			globalRouter.route("logout", "logout", function(){
-				self.logout.apply(self);
-			});
 			console.log("Login module has been initialized");
 		},
 		verifyUserIdentity:function(userId, userPw){

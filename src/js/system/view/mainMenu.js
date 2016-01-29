@@ -1,7 +1,7 @@
 /**
  * 
  */
-define(['jquery', 'jquery.mobile', 'backbone', 'utility/globalRouter'], function($, $mobile, Backbone, globalRouter){
+define(['jquery', 'jquery.mobile', 'backbone'], function($, $mobile, Backbone){
 	
 	var MainMenu = Backbone.View.extend({
 		el:"#mainMenu",
@@ -11,7 +11,6 @@ define(['jquery', 'jquery.mobile', 'backbone', 'utility/globalRouter'], function
 		render:function(params){
 			var pageId = "#" + this.$el.attr("id");
 			$(":mobile-pagecontainer").pagecontainer("change", pageId, {role:"page"});
-			globalRouter.navigate("view/mainMenu", {trigger:false});
 		}
 	});
 		

@@ -1,8 +1,8 @@
 /**
  * 
  */
-define([ 'jquery', 'jquery.mobile', 'jquery.i18next', 'backbone', 'utility/globalRouter'], 
-		function($, $mobile, i18next, Backbone, globalRouter){
+define([ 'jquery', 'jquery.mobile', 'jquery.i18next', 'backbone'], 
+		function($, $mobile, i18next, Backbone){
 	
 	var LoginView = Backbone.View.extend({
 		el:"#login",
@@ -22,7 +22,6 @@ define([ 'jquery', 'jquery.mobile', 'jquery.i18next', 'backbone', 'utility/globa
 			console.log("Render login page.");
 			var id = "#" + this.$el.attr("id");
 			$(":mobile-pagecontainer").pagecontainer("change", id, {role:"page"});
-			globalRouter.navigate("view/login", {trigger:false});
 			return this;
 		},
 		_resetSelectMenuToCurrentLanguage:function(){
