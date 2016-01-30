@@ -73,13 +73,16 @@ gulp.task('mainPage', ['clean'], function(){
 				return filePath;
 			}
 		}))
-		.pipe(inject(gulp.src([srcPath + 'template/dev/*.html']), {
-			starttag: '<!-- inject:body:{{ext}} -->',
-			transform: function (filePath, file) {
-				// return file contents as string
-				return file.contents.toString('utf8')
+		.pipe(inject(
+			gulp.src([srcPath + 'template/**/*.html', '!template/delivery/generalDelivery.html']), 
+			{
+				starttag: '<!-- inject:body:{{ext}} -->',
+				transform: function (filePath, file) {
+					// return file contents as string
+					return file.contents.toString('utf8')
+				}
 			}
-		}))
+		))
 		.pipe(gulp.dest(appPath));
 });
 /*
