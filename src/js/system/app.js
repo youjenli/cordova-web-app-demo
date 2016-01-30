@@ -1,34 +1,24 @@
 /**
 * 初始化橫跨整個應用程式生命週期的路由器
 */
-define(['./view/login', './model/login',
-		'./view/globalWidgets','./view/mainMenu',
-		'project/dev/delivery'],
-	function(LoginView, LoginModule,
-			GlobalWidgets, MainMenuView,
-			DeliveryRouter){
+define(['./config', './view/login', './model/login',
+		'./view/globalWidgets','./view/mainMenu'],
+	function(config, LoginView, LoginModule,
+			GlobalWidgets, MainMenuView){
 	
 	var App = Backbone.Router.extend({
 		initialize:function(){
 			var self = this;
-			
+		
 			var loginModule = new LoginModule();
 			var loginView = new LoginView({model:loginModule});
-			var loginViewRoutingPath = "system/view/login";
-			self.route(loginViewRoutingPath, "login", function(){
-				console.log("Route to login view.");
-				loginView.render();
-			});
+			config.loginForm.route.view = loginView;
 			
 			new GlobalWidgets();
-			
+				
 			var mainMenuView = new MainMenuView();
-			var mainMenuRoutingPath = "system/view/mainMenu";
-			self.route(mainMenuRoutingPath, "mainMenu", function(){
-				console.log("Route to system main menu.");
-				mainMenuView.render();
-			});
-			
+			config.mainMenu.route.view = mainMenuView;
+					
 			loginModule.on("login.success", function(){
 				mainMenuView.render();
 			});
@@ -36,12 +26,14 @@ define(['./view/login', './model/login',
 				loginView.render();
 			});
 			
-			self.navigate(loginViewRoutingPath, {trigger:true});
-			
-			var deliveryRouter = new DeliveryRouter();
-			deliveryRouter.on("quit", function(){
-				self.navigate(mainMenuRoutingPath, {trigger:true});
+			[config.loginForm.route, config.mainMenu.route].forEach(function(target, idx){
+				self.route(target.path, target.name, function(){
+					console.log("Route to " + target.path + " .");
+					target.view.render();
+				});		
 			});
+			
+			self.navigate(config.loginForm.route.path, {trigger:true});
 			
 			console.log("Synnex app has been initialized.");
 		}
