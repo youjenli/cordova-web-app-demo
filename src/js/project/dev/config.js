@@ -2,6 +2,12 @@
 
 define([], function(){
 	return {
+		init:{
+			route:{
+				name:"delivery/view/carInfo",
+				path:"delivery/view/carInfo"
+			}
+		},
 		carInfo:{
 			route:{
 				name:"delivery/view/carInfo",

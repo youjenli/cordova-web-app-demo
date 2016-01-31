@@ -6,36 +6,49 @@ define(['./config', './view/login', './model/login',
 	function(config, LoginView, LoginModule,
 			GlobalWidgets, MainMenuView){
 	
+	var pathToViewMappings = {};
+	
 	var App = Backbone.Router.extend({
 		initialize:function(){
 			var self = this;
-		
-			var loginModule = new LoginModule();
-			var loginView = new LoginView({model:loginModule});
-			config.loginForm.route.view = loginView;
-			
-			new GlobalWidgets();
+			self.once("moduleInit", function(){
+	
+				var loginModule = new LoginModule();
+				var loginView = new LoginView({model:loginModule});
+				pathToViewMappings[config.loginForm.route.name] = loginView;
 				
-			var mainMenuView = new MainMenuView();
-			config.mainMenu.route.view = mainMenuView;
+				new GlobalWidgets();
 					
-			loginModule.on("login.success", function(){
-				mainMenuView.render();
+				var mainMenuView = new MainMenuView();
+				pathToViewMappings[config.mainMenu.route.name] = mainMenuView;
+						
+				loginModule.on("login.success", function(){
+					mainMenuView.render();
+				});
+				loginModule.on("logout", function(){
+					loginView.render();
+				});
+				
+				[config.loginForm.route, config.mainMenu.route].forEach(function(target, idx){
+					if(pathToViewMappings[target.name]){
+						self.route(target.path, target.name, function(){
+							console.log("Route to " + target.path + " .");
+							pathToViewMappings[target.name].render();
+						});
+					}else{
+						//TODO error handling
+					}
+				});
+				self.route(config.activateSoftwarePackage.route.path,
+							config.activateSoftwarePackage.route.name, function(packageName){
+								self.trigger("activateSoftwarePackage", [packageName]);
+							});
+				console.log("System module has been initialized.");
 			});
-			loginModule.on("logout", function(){
-				loginView.render();
-			});
-			
-			[config.loginForm.route, config.mainMenu.route].forEach(function(target, idx){
-				self.route(target.path, target.name, function(){
-					console.log("Route to " + target.path + " .");
-					target.view.render();
-				});		
-			});
-			
-			self.navigate(config.loginForm.route.path, {trigger:true});
-			
-			console.log("Synnex app has been initialized.");
+		},
+		start:function(){
+			self.trigger("moduleInit");
+			self.navigate(config.init.route.path, {trigger:true});
 		}
 	});
 	
