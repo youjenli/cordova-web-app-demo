@@ -4,8 +4,8 @@
 define(['jquery', 'jquery.mobile', 'backbone'], 
 		function($, $mobile, Backbone){
 	
-	var LoginModule = Backbone.Model.extend({
-		attributes:{
+	var LoginModel = Backbone.Model.extend({
+		defaults:{
 			userId:undefined,
 			userPw:undefined
 		},
@@ -35,5 +35,5 @@ define(['jquery', 'jquery.mobile', 'backbone'],
 		}
 	});
 	
-	return LoginModule;
+	return LoginModel;
 });
