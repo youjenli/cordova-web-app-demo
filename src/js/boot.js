@@ -1,4 +1,6 @@
-require(["jquery", "jqm-and-i18next-config", "jquery.mobile",
+
+
+require(["./setup", "jquery", "jqm-and-i18next-config", "jquery.mobile",
 		"domReady", "backbone", "system/app", "project/dev/delivery"],
 	function($, i18nOptions, $mobile,
 			domReady, Backbone, App, DeliveryModule){

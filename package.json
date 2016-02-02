@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "project-init": "npm install && bower install",
-	"platform-init": "cordova platform add android browser ios",
+    "platform-init": "cordova platform add android browser ios",
     "start": "gulp prepare && cordova run browser",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

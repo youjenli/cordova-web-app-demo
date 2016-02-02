@@ -13,6 +13,7 @@ var	srcPath = 'src/',
 	appContent,
 	cssSrcPaths,
 	pathOfLibs = srcPath + 'lib',
+	rjsConfig = require('./src/js/rjs-config.js'),
 	tasksBeforePrepare
 	;
 
@@ -34,7 +35,7 @@ switch(process.env.NODE_ENV) {
 			"lib/jquery-mobile-for-synnex/jquery.mobile.icons.min.css",
 			"lib/jquery-mobile-for-synnex/jquery.mobile.structure.min.css"
 		];
-		tasksBeforePrepare = ['mainBowerFiles', 'mainPage'/*, 'optimizejs'*/];
+		tasksBeforePrepare = ['mainBowerFiles', 'mainPage'/*, 'optimize'*/];
 	case "development":
 	default:
 		process.env.NODE_ENV = "development";
@@ -48,6 +49,7 @@ switch(process.env.NODE_ENV) {
 			"lib/jquery-mobile-for-synnex/jquery.mobile.icons.css",
 			"lib/jquery-mobile-for-synnex/jquery.mobile.structure.css"
 		];
+		rjsConfig.optimize = 'none';
 		tasksBeforePrepare = ['mainBowerFiles', 'mainPage'];
 		break;
 }
@@ -120,9 +122,8 @@ gulp.task('mainPage', ['clean'], function(){
 		)
 		.pipe(gulp.dest(appPath));
 });
-/*
-gulp.task('optimizejs', ['mainBowerFiles'], function(){
-	var rjsConfig = require('./rjs-config.json');
+
+gulp.task('optimize', ['mainBowerFiles'], function(){
 	return gulp.src([
 			srcPath + 'js/boot.js'
 		])
@@ -131,7 +132,7 @@ gulp.task('optimizejs', ['mainBowerFiles'], function(){
 		//.pipe(sourceMaps.write())
 		.pipe(gulp.dest(appPath + '/js'));
 });
-*/
+
 gulp.task('prepare', tasksBeforePrepare, function(){
 	return gulp.src(appContent, {base:srcPath})
 			.pipe(gulp.dest(appPath));
