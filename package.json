@@ -1,5 +1,5 @@
 {
-  "name": "Html5Application",
+  "name": "cordova-web-app-demo",
   "version": "1.0.0",
   "author": "martinli",
   "keywords": [
@@ -9,9 +9,9 @@
     "html5"
   ],
   "scripts": {
-    "project-init": "npm install && bower install && gulp wireDependencies",
-    "build": "gulp prepare && cordova build",
-    "start": "cordova serve",
+    "project-init": "npm install && bower install",
+	"platform-init": "cordova platform add android browser ios",
+    "start": "gulp prepare && cordova run browser",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
