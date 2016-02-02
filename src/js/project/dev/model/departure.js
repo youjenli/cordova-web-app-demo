@@ -1,35 +1,23 @@
 /**
  * Departure model
  */
-define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/procedure/carInfo'], function($, $mobile, Backbone, carInfoProcedure){
+define(['jquery', 'jquery.mobile', 'backbone'], function($, $mobile, Backbone){
 	
 	var DepartureModel = Backbone.Model.extend({
 		defaults:{
 			areaCode:undefined,
-			deliveryAssignment:undefined,
-			carNum:undefined
+			carNum:undefined,
+			deliveryAssignment:undefined
 		},
 		initialize:function(){
-			this._updateCarInfo();
-			this.getDeliveryAssignment();
+			var self = this;
 			
-			this.listenTo(carInfoProcedure, "change:carNum", function(){
-				this._updateCarInfo();
-				this.getDeliveryAssignment();
+			self.on("change:carNum", function(){
+				var carNum = self.get("carNum");
+				var deliveryAssignment = ( carNum != undefined ? parseInt(carNum) + 10 : 0 );
+				self.set("deliveryAssignment", deliveryAssignment);
 			});
 			console.log("Departure model has been initialized.");
-		},
-		_updateCarInfo:function(){
-			var carNum = carInfoProcedure.get("carNum");
-			var areaCode = carInfoProcedure.get("areaCode");
-			this.set({ carNum:carNum, areaCode:areaCode });
-		},
-		getDeliveryAssignment:function(){
-			var carNum = this.get("carNum");
-			var deliveryAssignment = ( carNum != undefined ? parseInt(carNum) + 10 : 0 );
-			this.set("deliveryAssignment", deliveryAssignment);
-			
-			return deliveryAssignment;
 		},
 		confirmDeparture:function(){
 			this.trigger("departure.confirmed");

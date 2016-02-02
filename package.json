@@ -18,6 +18,7 @@
     "bower": "^1.7.2",
     "cordova": "^5.4.1",
     "gulp": "^3.9.0",
+    "gulp-cheerio": "^0.6.2",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-htmlprocessor": "^0.1.1",
@@ -27,6 +28,7 @@
     "gulp-processhtml": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-requirejs-optimize": "^0.3.1",
-    "gulp-sourcemaps": "^1.6.0"
+    "gulp-sourcemaps": "^1.6.0",
+    "requirejs": "^2.1.22"
   }
 }

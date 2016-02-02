@@ -1,7 +1,7 @@
 /**
- * Product installation Procedure (model)
+ * Product installation model
  */
-define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/features/generalDeliveryProcedure'], 
+define(['jquery', 'jquery.mobile', 'backbone', './generalDelivery'], 
 		function($, $mobile, Backbone, GeneralDeliveryModel){
 	
 	var ProductInstallationModel = GeneralDeliveryModel.extend({

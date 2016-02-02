@@ -1,7 +1,7 @@
 /**
  * Delivery log view
  */
-define(['jquery', 'jquery.mobile', 'backbone', 'view/dev/features/generalDeliveryView'], 
+define(['jquery', 'jquery.mobile', 'backbone', './generalDelivery'], 
 		function($, $mobile, Backbone, GeneralDeliveryView){
 	
 	var DeliveryLogView = GeneralDeliveryView.extend({

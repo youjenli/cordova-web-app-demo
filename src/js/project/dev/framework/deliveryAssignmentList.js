@@ -1,7 +1,7 @@
 /**
  * 
  */
-define(['backbone', 'model/dev/deliveryAssignment'], 
+define(['backbone', './deliveryAssignment'], 
 		function(Backbone, DeliveryAssignment){
 	
 	var DeliveryAssignmentList = Backbone.Collection.extend({

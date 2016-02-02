@@ -57,4 +57,6 @@ define(['jquery', 'jquery.i18next'], function($, i18next){
 			console.log("Translate words in page " + page.attr("id") + " to locale " + i18next.lng());
 		});	
 	});
+	
+	return i18nOpts;
 });

@@ -41,14 +41,20 @@ define(['./config', './view/login', './model/login',
 				});
 				self.route(config.activateSoftwarePackage.route.path,
 							config.activateSoftwarePackage.route.name, function(packageName){
-								self.trigger("activateSoftwarePackage", [packageName]);
+								console.log("Trigger activateSoftwarePackage event : " + packageName);//TODO remove later
+								self.trigger("activateSoftwarePackage", packageName);
 							});
 				console.log("System module has been initialized.");
 			});
 		},
 		start:function(){
+			var self = this;
 			self.trigger("moduleInit");
 			self.navigate(config.init.route.path, {trigger:true});
+		},
+		backToMainMenu:function(){
+			var self = this;
+			self.navigate(config.mainMenu.route.path, {trigger:true});
 		}
 	});
 	

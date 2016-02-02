@@ -27,6 +27,7 @@ define(['backbone', './config', './framework/deliveryAssignmentList',
 	
 	var DeliveryRouter = Backbone.Router.extend({
 		initialize:function(){
+			var self = this;
 			self.on("moduleInit", function(){
 				var carInfoModel = new CarInfoModel();
 				var carInfoView = new CarInfoView({model:carInfoModel});
@@ -69,6 +70,12 @@ define(['backbone', './config', './framework/deliveryAssignmentList',
 					self.trigger("quit");
 				});
 				
+				departureModel.listenTo(carInfoModel, "change:carNum", function(){
+					departureModel.set({
+						carNum:carInfoModel.get("carNum"),
+						areaCode:carInfoModel.get("areaCode")
+					});
+				});
 				/**
 				* 當使用者出車確認或僅登入時, 系統會顯示配送功能選單畫面, 等待使用者後續操作
 				*/
@@ -99,7 +106,7 @@ define(['backbone', './config', './framework/deliveryAssignmentList',
 							deliveryAssignmentList:new DeliveryAssignmentList()
 						});
 					var productInstallationView = new ProductInstallationView({model:productInstallationFeature});
-					pathToViewMappings[config.productionInstallation.route.name] = productInstallationView;
+					pathToViewMappings[config.productInstallation.route.name] = productInstallationView;
 					
 					var deliveryFailureFeature = new DeliveryFailureFeature({
 							deliveryAssignmentList:new DeliveryAssignmentList()
@@ -117,7 +124,7 @@ define(['backbone', './config', './framework/deliveryAssignmentList',
 					pathToViewMappings[config.searchAndInquiry.route.name] = searchAndInquiryView;
 					
 					[config.ordinaryDelivery.route, 
-					config.productionInstallation.route,
+					config.productInstallation.route,
 					config.deliveryFailure.route,
 					config.deliveryLog.route,
 					config.searchAndInquiry.route
@@ -125,7 +132,7 @@ define(['backbone', './config', './framework/deliveryAssignmentList',
 						if(pathToViewMappings[target.name]){
 							self.route(target.path, target.name, function(){
 								console.log("Route to " + target.path + " .");
-								target.view.render();
+								pathToViewMappings[target.name].render();
 							});
 						} else {
 							//TODO exception handling
@@ -146,7 +153,7 @@ define(['backbone', './config', './framework/deliveryAssignmentList',
 						}
 					};
 					deliveryLogFeature.listenTo(ordinaryDeliveryFeature, "writeLog", handler);
-					deliveryLogFeature.listenTo(productionInstallationFeature, "writeLog", handler);
+					deliveryLogFeature.listenTo(productInstallationFeature, "writeLog", handler);
 					deliveryLogFeature.listenTo(deliveryFailureFeature, "writeLog", handler);
 				});
 				//配送模組初始化結束

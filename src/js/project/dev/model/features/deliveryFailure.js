@@ -1,10 +1,10 @@
 /**
  * Delivery failure procedure (Model)
  */
-define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/features/generalDeliveryProcedure'], 
-		function($, $mobile, Backbone, GeneralDeliveryProcedure){
+define(['jquery', 'jquery.mobile', 'backbone', './generalDelivery'], 
+		function($, $mobile, Backbone, GeneralDeliveryModel){
 	
-	var DeliveryFailureModel = GeneralDeliveryProcedure.extend({
+	var DeliveryFailureModel = GeneralDeliveryModel.extend({
 		confirmInputSlipNo:function(){
 			var slipNoList = this.getSlipNoList();
 			console.log(slipNoList);//FIXME

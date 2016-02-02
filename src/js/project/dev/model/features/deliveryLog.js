@@ -1,10 +1,10 @@
 /**
  * Delivery Log Procedure (Model)
  */
-define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/features/generalDeliveryProcedure'], 
-		function($, $mobile, Backbone, GeneralDeliveryProcedure){
+define(['jquery', 'jquery.mobile', 'backbone', './generalDelivery'], 
+		function($, $mobile, Backbone, GeneralDeliveryModel){
 	
-	var DeliveryLogModel = GeneralDeliveryProcedure.extend({
+	var DeliveryLogModel = GeneralDeliveryModel.extend({
 	});
 	
 	return DeliveryLogModel;
