@@ -38,7 +38,7 @@ define(['backbone', './config', './framework/deliveryAssignmentList',
 				
 				var deliveryMenuView = new DeliveryMenuView();
 				var deliveryPanelView = new DeliveryPanelView();
-				config.menu.route.target = deliveryMenuView;
+				pathToViewMappings[config.menu.route.name] = deliveryMenuView;
 				
 				[config.carInfo.route, 
 				config.departure.route,
@@ -93,35 +93,43 @@ define(['backbone', './config', './framework/deliveryAssignmentList',
 							deliveryAssignmentList:new DeliveryAssignmentList()
 						});
 					var ordinaryDeliveryView = new OrdinaryDeliveryView({model:ordinaryDeliveryFeature});
-					config.ordinaryDelivery.route.target = ordinaryDeliveryView;
+					pathToViewMappings[config.ordinaryDelivery.route.name] = ordinaryDeliveryView;
 					
 					var	productInstallationFeature = new ProductInstallationFeature({
 							deliveryAssignmentList:new DeliveryAssignmentList()
 						});
 					var productInstallationView = new ProductInstallationView({model:productInstallationFeature});
-					config.productionInstallation.route.target = productInstallationView;
+					pathToViewMappings[config.productionInstallation.route.name] = productInstallationView;
 					
 					var deliveryFailureFeature = new DeliveryFailureFeature({
 							deliveryAssignmentList:new DeliveryAssignmentList()
 						});
 					var deliveryFailureView = new DeliveryFailureView({model:deliveryFailureFeature});
-					config.deliveryFailure.route.target = deliveryFailureView;
+					pathToViewMappings[config.deliveryFailure.route.name] = deliveryFailureView;
 					
 					var deliveryLogFeature = new DeliveryLogFeature({
 							deliveryAssignmentList:new DeliveryAssignmentList()
 						});
 					var deliveryLogView = new DeliveryLogView({model:deliveryLogFeature});
-					config.deliveryLog.route.target = deliveryLogView;
+					pathToViewMappings[config.deliveryLog.route.name] = deliveryLogView;
+					
+					var searchAndInquiryView = new SearchAndInquiryView();
+					pathToViewMappings[config.searchAndInquiry.route.name] = searchAndInquiryView;
 					
 					[config.ordinaryDelivery.route, 
 					config.productionInstallation.route,
 					config.deliveryFailure.route,
-					config.deliveryLog.route
+					config.deliveryLog.route,
+					config.searchAndInquiry.route
 					].forEach(function(target, idx){
-						self.route(target.path, target.name, function(){
-							console.log("Route to " + target.path + " .");
-							target.view.render();
-						});
+						if(pathToViewMappings[target.name]){
+							self.route(target.path, target.name, function(){
+								console.log("Route to " + target.path + " .");
+								target.view.render();
+							});
+						} else {
+							//TODO exception handling
+						}
 					});
 					
 					/**

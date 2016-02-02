@@ -38,16 +38,22 @@ define([], function(){
 				path:"delivery/view/productInstallation"
 			}
 		},
-		deliveryFailureFeature:{
+		deliveryFailure:{
 			route:{
 				name:"delivery/view/deliveryFailure",
 				path:"delivery/view/deliveryFailure"
 			}
 		},
-		deliveryLogFeature:{
+		deliveryLog:{
 			route:{
 				name:"delivery/view/deliveryLog",
 				path:"delivery/view/deliveryLog"
+			}
+		},
+		searchAndInquiry:{
+			route:{
+				name:"delivery/view/searchAndInquiry",
+				path:"delivery/view/searchAndInquiry"
 			}
 		}
 	};
