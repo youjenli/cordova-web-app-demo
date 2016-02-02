@@ -4,11 +4,11 @@
 define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/features/generalDeliveryProcedure'], 
 		function($, $mobile, Backbone, GeneralDeliveryProcedure){
 	
-	var OrdinaryDeliveryProcedure = GeneralDeliveryProcedure.extend({
+	var OrdinaryDeliveryModel = GeneralDeliveryProcedure.extend({
 		confirmInputSlipNo:function(){
 			this.trigger("writeLog", this);
 		}
 	});	
-	return OrdinaryDeliveryProcedure;
+	return OrdinaryDeliveryModel;
 	
 });

@@ -3,8 +3,8 @@
  */
 define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/procedure/carInfo'], function($, $mobile, Backbone, carInfoProcedure){
 	
-	var DepartureProcedure = Backbone.Model.extend({
-		attributes:{
+	var DepartureModel = Backbone.Model.extend({
+		defaults:{
 			areaCode:undefined,
 			deliveryAssignment:undefined,
 			carNum:undefined
@@ -39,5 +39,5 @@ define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/procedure/carInfo'], 
 		}
 	});
 	
-	return DepartureProcedure;
+	return DepartureModel;
 });

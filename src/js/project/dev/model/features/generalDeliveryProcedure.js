@@ -4,8 +4,8 @@
 define(['jquery', 'jquery.mobile', 'backbone'], 
 		function($, $mobile, Backbone){
 	
-	var GeneralDeliveryProcedure = Backbone.Model.extend({
-		attributes:{
+	var GeneralDeliveryModel = Backbone.Model.extend({
+		defaults:{
 			deliveryAssignmentList:undefined
 		},
 		initialize:function(){
@@ -64,5 +64,5 @@ define(['jquery', 'jquery.mobile', 'backbone'],
 		}
 	});
 	
-	return GeneralDeliveryProcedure;
+	return GeneralDeliveryModel;
 });

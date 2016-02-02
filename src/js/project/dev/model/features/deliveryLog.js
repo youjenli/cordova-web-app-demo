@@ -4,9 +4,9 @@
 define(['jquery', 'jquery.mobile', 'backbone', 'module/dev/features/generalDeliveryProcedure'], 
 		function($, $mobile, Backbone, GeneralDeliveryProcedure){
 	
-	var DeliveryLogProcedure = GeneralDeliveryProcedure.extend({
+	var DeliveryLogModel = GeneralDeliveryProcedure.extend({
 	});
 	
-	return DeliveryLogProcedure;
+	return DeliveryLogModel;
 	
 });

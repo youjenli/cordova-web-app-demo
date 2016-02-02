@@ -4,7 +4,7 @@
 define(['jquery', 'jquery.mobile', 'backbone'], function($, $mobile, Backbone){
 	
 	var CarInfoModel = Backbone.Model.extend({
-		attributes:{
+		defaults:{
 			areaCode:undefined,
 			carNum:undefined
 		},
