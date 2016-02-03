@@ -27,30 +27,17 @@
   },
   "overrides": {
     "jquery": {
-      "main": {
-        "development": "./jquery.js",
-        "production": "./jquery.min.js"
-      }
+      "main": "./jquery.js"
     },
     "jquery-mobile-for-synnex": {
-      "main": {
-        "development": [
-          "./images/icons-png/*",
-          "./images/ajax-loader.gif",
-          "./jquery-mobile-theme-for-synnex.css",
-          "./jquery.mobile.icons.css",
-          "./jquery.mobile.structure.css",
-          "./jquery.mobile.js"
-        ],
-        "production": [
-          "./images/icons-png/*",
-          "./images/ajax-loader.gif",
-          "./jquery-mobile-theme-for-synnex.min.css",
-          "./jquery.mobile.icons.min.css",
-          "./jquery.mobile.structure.min.css",
-          "./jquery.mobile.min.js"
-        ]
-      }
+      "main": [
+		"./images/icons-png/*",
+		"./images/ajax-loader.gif",
+		"./jquery-mobile-theme-for-synnex.css",
+		"./jquery.mobile.icons.css",
+		"./jquery.mobile.structure.css",
+		"./jquery.mobile.js"
+		]
     }
   }
 }
