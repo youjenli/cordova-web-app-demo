@@ -7,8 +7,9 @@ var path = require('path'),
 	cheerio = require('gulp-cheerio'),
 	concat = require('gulp-concat'),
 	cssNano = require('gulp-cssnano'),
+	htmlReplace = require('gulp-html-replace'),
 	requirejsOptimize = require('gulp-requirejs-optimize'),
-	sourceMaps = require('gulp-sourcemaps')
+	sourceMaps = require('gulp-sourcemaps')	
 	;
 
 var	debugMinifiedCode = false,
@@ -19,28 +20,29 @@ var	debugMinifiedCode = false,
 		srcPath + "lib/**/*.gif",
 		srcPath + "lib/requirejs/require.js",
 		srcPath + "images/**/*",
-		srcPath + "locales/**/*"
+		srcPath + "locales/**/*",
+		srcPath + "css/main.css"
 	],
+	buildTaskDependencies = ['mainBowerFiles', 'mainPage', 'prepare'],
 	pathOfLibs = srcPath + 'lib',
-	buildTaskDependencies,
-	mainPageTaskDependencies
+	buildTaskDependencies
 	;
-var rjsConfig = require('./src/js/requirejs-config.js');
+	
+var jsEntryFileName = "boot.js",
+	jqmCssEntryFileName = "jqm.css",
+	rjsConfig = require('./src/js/requirejs-config.js')
+	;
 
 //process.env.NODE_ENV = "production";
 switch(process.env.NODE_ENV) {
 	case "production":
-		buildTaskDependencies = ['mainBowerFiles', 'optimizeJS', 'optimizeCSS', 'mainPage'];
-		mainPageTaskDependencies = ['clean', 'optimizeJS', 'optimizeCSS'];
+		buildTaskDependencies.push('optimizeJS', 'optimizeCSS');
 		break;
 	case "development":
 	default:
 		process.env.NODE_ENV = "development";
-		buildTaskDependencies = ['mainBowerFiles', 'mainPage'];
-		mainPageTaskDependencies = ['clean'];
 		appContent.push(srcPath + "lib/**/*.js",
 						srcPath + "lib/**/*.css",
-						srcPath + "css/main.css",
 						srcPath + "js/**/*");
 		break;
 }
@@ -57,24 +59,22 @@ gulp.task('mainBowerFiles', ['clean'], function(){
 });
 
 gulp.task('optimizeCSS', ['mainBowerFiles'], function(){
-	var compressedCssFileName = 'main.css';
-		
 	var gulpSrc = gulp.src([
 			srcPath + "lib/jquery-mobile-for-synnex/jquery-mobile-theme-for-synnex.css",
 			srcPath + "lib/jquery-mobile-for-synnex/jquery.mobile.icons.css",
-			srcPath + "lib/jquery-mobile-for-synnex/jquery.mobile.structure.css",
-			srcPath + "css/main.css"
-		]).pipe(concat(compressedCssFileName));
+			srcPath + "lib/jquery-mobile-for-synnex/jquery.mobile.structure.css"
+		]).pipe(concat(jqmCssEntryFileName));
 		
 	if (debugMinifiedCode) {
-		gulpSrc
-			.pipe(sourceMaps.init())
-			.pipe(cssNano())
-			.pipe(sourceMaps.write())
+		gulpSrc = gulpSrc
+					.pipe(sourceMaps.init())
+					.pipe(cssNano())
+					.pipe(sourceMaps.write())
 	} else {
-		gulpSrc.pipe(cssNano())
+		gulpSrc = gulpSrc
+					.pipe(cssNano())
 	}
-	return gulpSrc.pipe(gulp.dest(appPath + 'css'));
+	return gulpSrc.pipe(gulp.dest(appPath + 'lib/'));
 });
 
 gulp.task('optimizeJS', ['mainBowerFiles'], function(){
@@ -83,24 +83,24 @@ gulp.task('optimizeJS', ['mainBowerFiles'], function(){
 			paths:rjsConfig.paths,
 			optimize:"uglify2"
 	};
-	var gulpSrc = gulp.src([srcPath + 'js/boot.js']);
+	var gulpSrc = gulp.src([srcPath + 'js/' + jsEntryFileName]);
 	
 	if (debugMinifiedCode) {
-		gulpSrc
-			.pipe(sourceMaps.init())
-			.pipe(requirejsOptimize(requirejsOptimizeConfig))
-			.pipe(sourceMaps.write())
+		gulpSrc = gulpSrc
+					.pipe(sourceMaps.init())
+					.pipe(requirejsOptimize(requirejsOptimizeConfig))
+					.pipe(sourceMaps.write())
 	} else {
-		gulpSrc
-			.pipe(requirejsOptimize(requirejsOptimizeConfig))
+		gulpSrc = gulpSrc
+					.pipe(requirejsOptimize(requirejsOptimizeConfig))
 	}
 	
 	return gulpSrc.pipe(gulp.dest(appPath + 'js'));
 });
 
-gulp.task('mainPage', mainPageTaskDependencies, function(){
+gulp.task('mainPage',  ['clean'], function(){
 	var spaFileName = 'index.html';
-	return gulp.src(srcPath + spaFileName)
+	var gulpSrc = gulp.src(srcPath + spaFileName)
 		//將各模組的樣板寫入到主頁中, 形成 SPA
 		.pipe(inject(
 				gulp.src([srcPath + 'template/**/*.html', 
@@ -145,12 +145,20 @@ gulp.task('mainPage', mainPageTaskDependencies, function(){
 					}
 				});
 			})
-		).pipe(gulp.dest(appPath));
+		);
+	if (process.env.NODE_ENV == "production") {
+		gulpSrc = gulpSrc.pipe(htmlReplace({
+				jqmCSS:"lib/" + jqmCssEntryFileName,
+				modules:"js/" + jsEntryFileName
+			})
+		);
+	}		
+	return gulpSrc.pipe(gulp.dest(appPath));
 });
 
-gulp.task('build', buildTaskDependencies, function(){
+gulp.task('prepare', ["mainBowerFiles"], function(){
 	return gulp.src(appContent, {base:srcPath})
 			.pipe(gulp.dest(appPath));
 });
 
-gulp.task('default', ['build']);
+gulp.task('default', buildTaskDependencies);
