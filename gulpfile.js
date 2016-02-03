@@ -1,54 +1,42 @@
-var gulp = require('gulp'),
+var path = require('path'),
+	gulp = require('gulp'),
 	mainBowerFiles = require('gulp-main-bower-files'),
 	clean = require('gulp-clean'),
-	sourceMaps = require('gulp-sourcemaps'),
 	print = require('gulp-print'),
-	requirejsOptimize = require('gulp-requirejs-optimize'),
 	inject = require('gulp-inject'),
-	cheerio = require('gulp-cheerio')
+	cheerio = require('gulp-cheerio'),
+	requirejsOptimize = require('gulp-requirejs-optimize'),
+	sourceMaps = require('gulp-sourcemaps')
 	;
 
-var	srcPath = 'src/',
+var	debugMinifiedCode = false,
+	srcPath = 'src/',
 	appPath = 'www/',
-	appContent,
-	cssSrcPaths,
+	appContent = [
+		srcPath + "lib/**/*.css",
+		srcPath + "lib/**/images/*",
+		srcPath + "lib/**/*.gif",
+		srcPath + "lib/requirejs/require.js",
+		srcPath + "css/**/*",
+		srcPath + "images/**/*",
+		srcPath + "locales/**/*"
+	],
 	pathOfLibs = srcPath + 'lib',
-	tasksBeforePrepare
+	taskDependencies
 	;
+var rjsConfig = require('./src/js/requirejs-config.js');
 
+//process.env.NODE_ENV = "production";
 switch(process.env.NODE_ENV) {
 	case "production":
-		appContent = [
-			srcPath + "lib/**/*.css",
-			srcPath + "lib/**/images/*",
-			srcPath + "lib/**/*.gif",
-			srcPath + "lib/requirejs/require.js",
-			srcPath + "css/**/*",
-			srcPath + "images/**/*",
-			srcPath + "locales/**/*",
-			'!' + srcPath  + 'template',
-			'!' + srcPath  + 'index.html'
-		];
-		cssSrcPaths = [
-			"lib/jquery-mobile-for-synnex/jquery-mobile-theme-for-synnex.min.css",
-			"lib/jquery-mobile-for-synnex/jquery.mobile.icons.min.css",
-			"lib/jquery-mobile-for-synnex/jquery.mobile.structure.min.css"
-		];
-		tasksBeforePrepare = ['mainBowerFiles', 'mainPage'/*, 'optimizejs'*/];
+		taskDependencies = ['mainBowerFiles', 'mainPage', 'optimize'];
+		break;
 	case "development":
 	default:
 		process.env.NODE_ENV = "development";
-		appContent = [
-			srcPath + '**/*', 
-			'!' + srcPath  + 'template',
-			'!' + srcPath  + 'index.html'
-		];
-		cssSrcPaths = [
-			"lib/jquery-mobile-for-synnex/jquery-mobile-theme-for-synnex.css",
-			"lib/jquery-mobile-for-synnex/jquery.mobile.icons.css",
-			"lib/jquery-mobile-for-synnex/jquery.mobile.structure.css"
-		];
-		tasksBeforePrepare = ['mainBowerFiles', 'mainPage'];
+		taskDependencies = ['mainBowerFiles', 'mainPage'];
+		appContent.push(srcPath + "lib/**/*.js",
+						srcPath + "js/**/*");
 		break;
 }
 	
@@ -65,15 +53,6 @@ gulp.task('mainBowerFiles', ['clean'], function(){
 
 gulp.task('mainPage', ['clean'], function(){
 	return gulp.src(srcPath + 'index.html')
-		//.pipe(processHtml())
-		//根據 production 或 development 的設定插入 css 檔案連結
-		.pipe(inject(gulp.src(cssSrcPaths), {
-				starttag: '<!-- inject:head:{{ext}} -->',
-				transform: function(filePath, file){
-						return filePath;
-				}
-			}
-		))
 		//將各模組的樣板寫入到主頁中, 形成 SPA
 		.pipe(inject(
 					gulp.src([srcPath + 'template/**/*.html', 
@@ -120,19 +99,32 @@ gulp.task('mainPage', ['clean'], function(){
 		)
 		.pipe(gulp.dest(appPath));
 });
-/*
-gulp.task('optimizejs', ['mainBowerFiles'], function(){
-	var rjsConfig = require('./rjs-config.json');
-	return gulp.src([
-			srcPath + 'js/boot.js'
-		])
-		//.pipe(sourceMaps.init())
-		.pipe(requirejsOptimize(rjsConfig))
-		//.pipe(sourceMaps.write())
-		.pipe(gulp.dest(appPath + '/js'));
+
+gulp.task('optimize', ['mainBowerFiles'], function(){
+	if (debugMinifiedCode) {
+		return gulp.src([srcPath + 'js/boot.js'])
+			.pipe(sourceMaps.init())
+			.pipe(requirejsOptimize({
+					baseUrl:path.join(__dirname, srcPath, rjsConfig.baseUrl),
+					paths:rjsConfig.paths,
+					optimize:"uglify2"
+				}
+			))
+			.pipe(sourceMaps.write())
+			.pipe(gulp.dest(appPath + 'js'));
+	} else {
+		return gulp.src([srcPath + 'js/boot.js'])
+			.pipe(requirejsOptimize({
+					baseUrl:path.join(__dirname, srcPath, rjsConfig.baseUrl),
+					paths:rjsConfig.paths,
+					optimize:"uglify2"
+				}
+			))
+			.pipe(gulp.dest(appPath + 'js'));
+	}	
 });
-*/
-gulp.task('prepare', tasksBeforePrepare, function(){
+
+gulp.task('prepare', taskDependencies, function(){
 	return gulp.src(appContent, {base:srcPath})
 			.pipe(gulp.dest(appPath));
 });

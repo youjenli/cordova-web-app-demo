@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "project-init": "npm install && bower install",
-	"platform-init": "cordova platform add android browser ios",
+    "platform-init": "cordova platform add android browser ios",
     "start": "gulp prepare && cordova run browser",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,6 +29,9 @@
     "gulp-rename": "^1.2.2",
     "gulp-requirejs-optimize": "^0.3.1",
     "gulp-sourcemaps": "^1.6.0",
-    "requirejs": "^2.1.22"
+    "path": "^0.12.7",
+    "requirejs": "^2.1.22",
+    "webpack": "^1.12.12",
+    "webpack-stream": "git+https://github.com/shama/webpack-stream.git"
   }
 }
