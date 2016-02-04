@@ -3,6 +3,7 @@ var path = require('path'),
 	mainBowerFiles = require('gulp-main-bower-files'),
 	clean = require('gulp-clean'),
 	print = require('gulp-print'),
+	gulpif = require('gulp-if'),
 	inject = require('gulp-inject'),
 	cheerio = require('gulp-cheerio'),
 	concat = require('gulp-concat'),
@@ -33,7 +34,7 @@ var jsProductFileName = "boot.js",
 	rjsConfig = require('./src/js/requirejs-config.js')
 	;
 
-//process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "production";
 switch(process.env.NODE_ENV) {
 	case "production":
 		buildTaskDependencies.push('optimizeJS', 'optimizeCSS');
@@ -59,22 +60,16 @@ gulp.task('mainBowerFiles', ['clean'], function(){
 });
 
 gulp.task('optimizeCSS', ['mainBowerFiles'], function(){
-	var gulpSrc = gulp.src([
+	return gulpSrc = gulp.src([
 			srcPath + "lib/jquery-mobile-for-synnex/jquery-mobile-theme-for-synnex.css",
 			srcPath + "lib/jquery-mobile-for-synnex/jquery.mobile.icons.css",
 			srcPath + "lib/jquery-mobile-for-synnex/jquery.mobile.structure.css"
-		]).pipe(concat(jqmCssProductFileName));
-		
-	if (debugMinifiedCode) {
-		gulpSrc = gulpSrc
-					.pipe(sourceMaps.init())
-					.pipe(cssNano())
-					.pipe(sourceMaps.write())
-	} else {
-		gulpSrc = gulpSrc
-					.pipe(cssNano())
-	}
-	return gulpSrc.pipe(gulp.dest(appPath + jqmPublicPath));
+		])
+		.pipe(concat(jqmCssProductFileName))
+		.pipe( gulpif(debugMinifiedCode, sourceMaps.init()) )
+		.pipe(cssNano())
+		.pipe( gulpif(debugMinifiedCode, sourceMaps.write()) )
+		.pipe(gulp.dest(appPath + jqmPublicPath));
 });
 
 gulp.task('optimizeJS', ['mainBowerFiles'], function(){
@@ -83,19 +78,11 @@ gulp.task('optimizeJS', ['mainBowerFiles'], function(){
 			paths:rjsConfig.paths,
 			optimize:"uglify2"
 	};
-	var gulpSrc = gulp.src([srcPath + 'js/' + jsProductFileName]);
-	
-	if (debugMinifiedCode) {
-		gulpSrc = gulpSrc
-					.pipe(sourceMaps.init())
-					.pipe(requirejsOptimize(requirejsOptimizeConfig))
-					.pipe(sourceMaps.write())
-	} else {
-		gulpSrc = gulpSrc
-					.pipe(requirejsOptimize(requirejsOptimizeConfig))
-	}
-	
-	return gulpSrc.pipe(gulp.dest(appPath + 'js'));
+	return gulp.src([srcPath + 'js/' + jsProductFileName])
+				.pipe( gulpif(debugMinifiedCode, sourceMaps.init()) )
+				.pipe(requirejsOptimize(requirejsOptimizeConfig))
+				.pipe( gulpif(debugMinifiedCode, sourceMaps.write()) )
+				.pipe(gulp.dest(appPath + 'js'));
 });
 
 gulp.task('mainPage',  ['clean'], function(){
