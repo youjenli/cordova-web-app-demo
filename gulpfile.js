@@ -39,7 +39,6 @@ var spaProductFileName = 'index.html';
 	rjsConfig = require('./src/js/requirejs-config.js')
 	;
 
-process.env.NODE_ENV = PRODUCTION_ENV;
 switch(process.env.NODE_ENV) {
 	case PRODUCTION_ENV:
 		buildTaskDependencies.push('optimizeJS', 'optimizeCSS', 'minimizeHtml');
@@ -169,7 +168,7 @@ gulp.task('minimizeHtml', ['mainPage'], function(){
 				.pipe(gulp.dest(appPath));
 });
 
-gulp.task('optimize', ["optimizeJS", "optimizeJQM", "optimizeCSS"]);
+gulp.task('optimize', ["optimizeJS", "optimizeJQM", "optimizeCSS", "minimizeHtml"]);
 
 gulp.task('prepare', ["mainBowerFiles"], function(){
 	return gulp.src(appContent, {base:srcPath})
