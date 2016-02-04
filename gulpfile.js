@@ -41,7 +41,7 @@ var spaProductFileName = 'index.html';
 
 switch(process.env.NODE_ENV) {
 	case PRODUCTION_ENV:
-		buildTaskDependencies.push('optimizeJS', 'optimizeCSS', 'minimizeHtml');
+		buildTaskDependencies.push("optimize");
 		break;
 	case DEVELOPMENT_ENV:
 	default:
