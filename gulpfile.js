@@ -31,6 +31,7 @@ var	debugMinifiedCode = false,
 var jsProductFileName = "boot.js",
 	jqmCssProductFileName = "jqm.css",
 	jqmPublicPath = "lib/jquery-mobile-for-synnex/",
+	customCssProductFileName = "main.css",
 	rjsConfig = require('./src/js/requirejs-config.js')
 	;
 
@@ -59,8 +60,8 @@ gulp.task('mainBowerFiles', ['clean'], function(){
 		.pipe(gulp.dest(pathOfLibs));
 });
 
-gulp.task('optimizeCSS', ['mainBowerFiles'], function(){
-	return gulpSrc = gulp.src([
+gulp.task('optimizeJQM', ['mainBowerFiles'], function(){
+	return gulp.src([
 			srcPath + "lib/jquery-mobile-for-synnex/jquery-mobile-theme-for-synnex.css",
 			srcPath + "lib/jquery-mobile-for-synnex/jquery.mobile.icons.css",
 			srcPath + "lib/jquery-mobile-for-synnex/jquery.mobile.structure.css"
@@ -70,6 +71,14 @@ gulp.task('optimizeCSS', ['mainBowerFiles'], function(){
 		.pipe(cssNano())
 		.pipe( gulpif(debugMinifiedCode, sourceMaps.write()) )
 		.pipe(gulp.dest(appPath + jqmPublicPath));
+});
+
+gulp.task('optimizeCSS', ["clean"], function(){
+	return gulp.src(srcPath + "css/" + customCssProductFileName)
+				.pipe( gulpif(debugMinifiedCode, sourceMaps.init()) )
+				.pipe(cssNano())
+				.pipe( gulpif(debugMinifiedCode, sourceMaps.write()) )
+				.pipe(gulp.dest(appPath + "css/"));
 });
 
 gulp.task('optimizeJS', ['mainBowerFiles'], function(){
@@ -142,6 +151,8 @@ gulp.task('mainPage',  ['clean'], function(){
 	}
 	return gulpSrc.pipe(gulp.dest(appPath));
 });
+
+gulp.task('optimize', ["optimizeJS", "optimizeJQM", "optimizeCSS"]);
 
 gulp.task('prepare', ["mainBowerFiles"], function(){
 	return gulp.src(appContent, {base:srcPath})
