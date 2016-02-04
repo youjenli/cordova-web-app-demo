@@ -8,6 +8,7 @@ var path = require('path'),
 	cheerio = require('gulp-cheerio'),
 	concat = require('gulp-concat'),
 	cssNano = require('gulp-cssnano'),
+	htmlMinifier = require('gulp-html-minifier'),
 	htmlReplace = require('gulp-html-replace'),
 	requirejsOptimize = require('gulp-requirejs-optimize'),
 	sourceMaps = require('gulp-sourcemaps')
@@ -146,6 +147,13 @@ gulp.task('mainPage',  ['clean'], function(){
 		gulpSrc = gulpSrc.pipe(htmlReplace({
 				jqmCSS:jqmPublicPath + jqmCssProductFileName,
 				modules:"js/" + jsProductFileName
+			})
+		)
+		.pipe(htmlMinifier({
+				removeComments:true,
+				collapseWhitespace:true,
+				removeTagWhitespace:true,
+				lint:true
 			})
 		);
 	}
