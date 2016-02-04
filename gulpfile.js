@@ -9,27 +9,27 @@ var path = require('path'),
 	cssNano = require('gulp-cssnano'),
 	htmlReplace = require('gulp-html-replace'),
 	requirejsOptimize = require('gulp-requirejs-optimize'),
-	sourceMaps = require('gulp-sourcemaps')	
+	sourceMaps = require('gulp-sourcemaps')
 	;
 
 var	debugMinifiedCode = false,
 	srcPath = 'src/',
 	appPath = 'www/',
+	pathOfLibs = srcPath + 'lib/',
 	appContent = [
-		srcPath + "lib/**/images/*",
-		srcPath + "lib/**/*.gif",
-		srcPath + "lib/requirejs/require.js",
+		pathOfLibs + "jquery-mobile-for-synnex/images/icons-png/*",
+		pathOfLibs + "jquery-mobile-for-synnex/images/ajax-loader.gif",
+		pathOfLibs + "requirejs/require.js",
 		srcPath + "images/**/*",
 		srcPath + "locales/**/*",
 		srcPath + "css/main.css"
 	],
-	buildTaskDependencies = ['mainBowerFiles', 'mainPage', 'prepare'],
-	pathOfLibs = srcPath + 'lib',
-	buildTaskDependencies
+	buildTaskDependencies = ['mainBowerFiles', 'mainPage', 'prepare']
 	;
 	
-var jsEntryFileName = "boot.js",
-	jqmCssEntryFileName = "jqm.css",
+var jsProductFileName = "boot.js",
+	jqmCssProductFileName = "jqm.css",
+	jqmPublicPath = "lib/jquery-mobile-for-synnex/",
 	rjsConfig = require('./src/js/requirejs-config.js')
 	;
 
@@ -54,7 +54,7 @@ gulp.task('clean', function () {
 
 gulp.task('mainBowerFiles', ['clean'], function(){
 	return gulp.src('./bower.json')
-        .pipe(mainBowerFiles())
+        .pipe(mainBowerFiles({checkExistence:true}))
 		.pipe(gulp.dest(pathOfLibs));
 });
 
@@ -63,7 +63,7 @@ gulp.task('optimizeCSS', ['mainBowerFiles'], function(){
 			srcPath + "lib/jquery-mobile-for-synnex/jquery-mobile-theme-for-synnex.css",
 			srcPath + "lib/jquery-mobile-for-synnex/jquery.mobile.icons.css",
 			srcPath + "lib/jquery-mobile-for-synnex/jquery.mobile.structure.css"
-		]).pipe(concat(jqmCssEntryFileName));
+		]).pipe(concat(jqmCssProductFileName));
 		
 	if (debugMinifiedCode) {
 		gulpSrc = gulpSrc
@@ -74,7 +74,7 @@ gulp.task('optimizeCSS', ['mainBowerFiles'], function(){
 		gulpSrc = gulpSrc
 					.pipe(cssNano())
 	}
-	return gulpSrc.pipe(gulp.dest(appPath + 'lib/'));
+	return gulpSrc.pipe(gulp.dest(appPath + jqmPublicPath));
 });
 
 gulp.task('optimizeJS', ['mainBowerFiles'], function(){
@@ -83,7 +83,7 @@ gulp.task('optimizeJS', ['mainBowerFiles'], function(){
 			paths:rjsConfig.paths,
 			optimize:"uglify2"
 	};
-	var gulpSrc = gulp.src([srcPath + 'js/' + jsEntryFileName]);
+	var gulpSrc = gulp.src([srcPath + 'js/' + jsProductFileName]);
 	
 	if (debugMinifiedCode) {
 		gulpSrc = gulpSrc
@@ -148,11 +148,11 @@ gulp.task('mainPage',  ['clean'], function(){
 		);
 	if (process.env.NODE_ENV == "production") {
 		gulpSrc = gulpSrc.pipe(htmlReplace({
-				jqmCSS:"lib/" + jqmCssEntryFileName,
-				modules:"js/" + jsEntryFileName
+				jqmCSS:jqmPublicPath + jqmCssProductFileName,
+				modules:"js/" + jsProductFileName
 			})
 		);
-	}		
+	}
 	return gulpSrc.pipe(gulp.dest(appPath));
 });
 
@@ -161,4 +161,6 @@ gulp.task('prepare', ["mainBowerFiles"], function(){
 			.pipe(gulp.dest(appPath));
 });
 
-gulp.task('default', buildTaskDependencies);
+gulp.task('build', buildTaskDependencies);
+
+gulp.task('default', ['build']);
