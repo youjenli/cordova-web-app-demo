@@ -14,7 +14,9 @@ var path = require('path'),
 	sourceMaps = require('gulp-sourcemaps')
 	;
 
-var	debugMinifiedCode = false,
+var	PRODUCTION_ENV = "production",
+	DEVELOPMENT_ENV = "development",
+	debugMinifiedCode = false,
 	srcPath = 'src/',
 	appPath = 'www/',
 	pathOfLibs = srcPath + 'lib/',
@@ -29,21 +31,22 @@ var	debugMinifiedCode = false,
 	buildTaskDependencies = ['mainBowerFiles', 'mainPage', 'prepare']
 	;
 	
-var jsProductFileName = "boot.js",
+var spaProductFileName = 'index.html';
+	jsProductFileName = "boot.js",
 	jqmCssProductFileName = "jqm.css",
 	jqmPublicPath = "lib/jquery-mobile-for-synnex/",
 	customCssProductFileName = "main.css",
 	rjsConfig = require('./src/js/requirejs-config.js')
 	;
 
-process.env.NODE_ENV = "production";
+process.env.NODE_ENV = PRODUCTION_ENV;
 switch(process.env.NODE_ENV) {
-	case "production":
-		buildTaskDependencies.push('optimizeJS', 'optimizeCSS');
+	case PRODUCTION_ENV:
+		buildTaskDependencies.push('optimizeJS', 'optimizeCSS', 'minimizeHtml');
 		break;
-	case "development":
+	case DEVELOPMENT_ENV:
 	default:
-		process.env.NODE_ENV = "development";
+		process.env.NODE_ENV = DEVELOPMENT_ENV;
 		appContent.push(srcPath + "lib/**/*.js",
 						srcPath + "lib/**/*.css",
 						srcPath + "js/**/*");
@@ -96,8 +99,7 @@ gulp.task('optimizeJS', ['mainBowerFiles'], function(){
 });
 
 gulp.task('mainPage',  ['clean'], function(){
-	var spaFileName = 'index.html';
-	var gulpSrc = gulp.src(srcPath + spaFileName)
+	return gulp.src(srcPath + spaProductFileName)
 		//將各模組的樣板寫入到主頁中, 形成 SPA
 		.pipe(inject(
 				gulp.src([srcPath + 'template/**/*.html', 
@@ -106,7 +108,7 @@ gulp.task('mainPage',  ['clean'], function(){
 					starttag: '<!-- inject:body:{{ext}} -->',
 					transform: function (filePath, file) {
 						// return file contents as string
-						console.log("Inject " + filePath + " into " + spaFileName);
+						console.log("Inject " + filePath + " into " + spaProductFileName);
 						return file.contents.toString('utf8')
 					}
 				}
@@ -142,22 +144,29 @@ gulp.task('mainPage',  ['clean'], function(){
 					}
 				});
 			})
-		);
-	if (process.env.NODE_ENV == "production") {
-		gulpSrc = gulpSrc.pipe(htmlReplace({
-				jqmCSS:jqmPublicPath + jqmCssProductFileName,
-				modules:"js/" + jsProductFileName
-			})
 		)
-		.pipe(htmlMinifier({
-				removeComments:true,
-				collapseWhitespace:true,
-				removeTagWhitespace:true,
-				lint:true
-			})
-		);
-	}
-	return gulpSrc.pipe(gulp.dest(appPath));
+		//如果這是 production build, 則使用 htmlReplace 變更頁面上的 css 檔案路徑
+		.pipe( gulpif(process.env.NODE_ENV == PRODUCTION_ENV, 
+						htmlReplace({
+							jqmCSS:jqmPublicPath + jqmCssProductFileName,
+							modules:"js/" + jsProductFileName
+						})
+					) 
+			)
+		.pipe(gulp.dest(appPath));
+});
+
+gulp.task('minimizeHtml', ['mainPage'], function(){
+	return gulp.src(appPath + spaProductFileName)
+				//使用 htmlMinifier 壓縮網頁
+				.pipe(htmlMinifier({
+							removeComments:true,
+							collapseWhitespace:true,
+							removeTagWhitespace:true,
+							lint:true
+						})
+				)
+				.pipe(gulp.dest(appPath));
 });
 
 gulp.task('optimize', ["optimizeJS", "optimizeJQM", "optimizeCSS"]);
